@@ -29,12 +29,8 @@ class PeripheralMode {
 
 mixin Motor on Peripheral {
   Future<bool> startSpeed(int speed, int maxPower, MotorAccelerationProfile useProfile) async {
-    if (_modeInfo == null) {
-      return false;
-    }
-
     SimpleTransaction<PortOutputCommandFeedback> tx = SimpleTransaction<PortOutputCommandFeedback>(
-        msgToSend: StartSpeedMessage(_modeInfo!.portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, speed, maxPower, useProfile));
+        msgToSend: StartSpeedMessage(portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, speed, maxPower, useProfile));
     PortOutputCommandFeedback? msg = await tx.queue(hub);
     if (msg == null) {
       return false;
@@ -44,13 +40,9 @@ mixin Motor on Peripheral {
   }
 
   Future<bool> startSpeedForDegrees(int degrees, int speed, int maxPower, MotorEndState endState, MotorAccelerationProfile useProfile) async {
-    if (_modeInfo == null) {
-      return false;
-    }
-
     SimpleTransaction<PortOutputCommandFeedback> tx = SimpleTransaction<PortOutputCommandFeedback>(
         msgToSend: StartSpeedForDegreesMessage(
-            _modeInfo!.portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, degrees, speed, maxPower, endState, useProfile));
+            portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, degrees, speed, maxPower, endState, useProfile));
     PortOutputCommandFeedback? msg = await tx.queue(hub);
     if (msg == null) {
       return false;
@@ -60,13 +52,9 @@ mixin Motor on Peripheral {
   }
 
   Future<bool> gotoAbsolutePosition(int absolutePosition, int speed, int maxPower, MotorEndState endState, MotorAccelerationProfile useProfile) async {
-    if (_modeInfo == null) {
-      return false;
-    }
-
     SimpleTransaction<PortOutputCommandFeedback> tx = SimpleTransaction<PortOutputCommandFeedback>(
         msgToSend: GotoAbsolutePositionMessage(
-            _modeInfo!.portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, absolutePosition, speed, maxPower, endState, useProfile));
+            portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, absolutePosition, speed, maxPower, endState, useProfile));
     PortOutputCommandFeedback? msg = await tx.queue(hub);
     if (msg == null) {
       return false;
@@ -95,11 +83,18 @@ class Peripheral {
     }
   }
 
-  Peripheral(this.hub, this.attachedIO) {
+  Peripheral(
+    this.hub,
+    this.attachedIO,
+  ) {
     print("Peripheral added $attachedIO");
   }
 
-  Future<PeripheralMode?> queryMode(int portId, int modeId, bool inputMode) async {
+  int get portId {
+    return attachedIO.portId;
+  }
+
+  Future<PeripheralMode?> _queryMode(int portId, int modeId, bool inputMode) async {
     PeripheralMode m = PeripheralMode(modeId, true);
 
     {
@@ -152,7 +147,7 @@ class Peripheral {
 
     for (int mode in _modeInfo!.inputModeList) {
       print("Sending get name for mode $mode on port ${_modeInfo!.portId}");
-      PeripheralMode? m = await queryMode(_modeInfo!.portId, mode, true);
+      PeripheralMode? m = await _queryMode(_modeInfo!.portId, mode, true);
       if (m != null) {
         _inputModes[mode] = m;
       } else {
@@ -162,7 +157,7 @@ class Peripheral {
 
     for (int mode in _modeInfo!.outputModeList) {
       print("Sending get name for mode $mode on port ${_modeInfo!.portId}");
-      PeripheralMode? m = await queryMode(_modeInfo!.portId, mode, false);
+      PeripheralMode? m = await _queryMode(_modeInfo!.portId, mode, false);
       if (m != null) {
         _outputModes[mode] = m;
       } else {
@@ -196,12 +191,8 @@ class Peripheral {
   }
 
   Future<bool> setInputMode(int mode, int delta, bool notificationEnabled) async {
-    if (_modeInfo == null) {
-      return false;
-    }
-
     SimpleTransaction<PortInputFormatMessage> tx =
-        SimpleTransaction<PortInputFormatMessage>(msgToSend: PortInputFormatSetupMessage(_modeInfo!.portId, mode, delta, notificationEnabled));
+        SimpleTransaction<PortInputFormatMessage>(msgToSend: PortInputFormatSetupMessage(portId, mode, delta, notificationEnabled));
     PortInputFormatMessage? msg = await tx.queue(hub);
     if (msg == null) {
       return false;

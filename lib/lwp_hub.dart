@@ -66,9 +66,9 @@ abstract class IHub {
         }
         Peripheral p = Peripheral.factory(this, msg);
         _hubState.peripherals[msg.portId] = p;
-        await p.interrogate();
+        // await p.interrogate();
         _hubStateStreamController.add(_hubState);
-        print(jsonEncode(p.toJsonObject()));
+        // print(jsonEncode(p.toJsonObject()));
       }
 
       if (msg is HubDetachedIOMessage) {
