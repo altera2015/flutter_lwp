@@ -49,20 +49,19 @@
 </h1></div>
 
     
+<section class="desc markdown">
+  <p>flutter_lwp contains the functionality to interact with Lego PoweredUp hubs using the LWP protocol.</p>
+<p>Disclaimer: This code was not written nor endorsed by Lego. It was written based on
+the protocol definitions published by Lego <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/">here</a>.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>The entry point for the library is the <a href="../flutter_lwp/IHubScanner-class.html">IHubScanner</a> and <a href="../flutter_lwp/IHub-class.html">IHub</a>.</p>
+</section>
 
 
     <section class="summary offset-anchor" id="classes">
       <h2>Classes</h2>
 
       <dl>
-        <dt id="EmptyMessage">
-  <span class="name "><a href="../flutter_lwp/EmptyMessage-class.html">EmptyMessage</a></span> 
-
-</dt>
-<dd>
-   
-</dd>
-
         <dt id="ErrorMessage">
   <span class="name "><a href="../flutter_lwp/ErrorMessage-class.html">ErrorMessage</a></span> 
 
@@ -76,15 +75,7 @@
 
 </dt>
 <dd>
-  <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-sub-command-gotoabsoluteposition-abspos-speed-maxpower-endstate-useprofile-0x0d">https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-sub-command-gotoabsoluteposition-abspos-speed-maxpower-endstate-useprofile-0x0d</a> 
-</dd>
-
-        <dt id="Helper">
-  <span class="name "><a href="../flutter_lwp/Helper-class.html">Helper</a></span> 
-
-</dt>
-<dd>
-   
+  Move motor to an absolute rotation <a href="../flutter_lwp/GotoAbsolutePositionMessage-class.html">[...]</a>
 </dd>
 
         <dt id="HubAttachedIOBaseMessage">
@@ -174,7 +165,7 @@ and if the hub is currently connected.
 
 </dt>
 <dd>
-   
+  Base class for all messages in and out of the Hub. 
 </dd>
 
         <dt id="MotorPeripheral">
@@ -342,7 +333,7 @@ and if the hub is currently connected.
 
 </dt>
 <dd>
-   
+  Parent class for PortOutputCommand's. 
 </dd>
 
         <dt id="PortValueMessage">
@@ -374,7 +365,7 @@ and if the hub is currently connected.
 
 </dt>
 <dd>
-  <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-sub-command-startspeedfordegrees-degrees-speed-maxpower-endstate-useprofile-0x0b">https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-sub-command-startspeedfordegrees-degrees-speed-maxpower-endstate-useprofile-0x0b</a> 
+  Move motor for a certain number of revolutions specified in degrees. <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.html">[...]</a>
 </dd>
 
         <dt id="StartSpeedMessage">
@@ -382,7 +373,7 @@ and if the hub is currently connected.
 
 </dt>
 <dd>
-  <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-sub-command-startspeed-speed-maxpower-useprofile-0x07">https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-sub-command-startspeed-speed-maxpower-useprofile-0x07</a> 
+  Move motor at certain speed indefinitely. <a href="../flutter_lwp/StartSpeedMessage-class.html">[...]</a>
 </dd>
 
         <dt id="Transaction">
@@ -447,7 +438,7 @@ and if the hub is currently connected.
 
 </dt>
 <dd>
-    <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/#hub-property-reference">https://lego.github.io/lego-ble-wireless-protocol-docs/#hub-property-reference</a> 
+     
 </dd>
 
 
@@ -456,9 +447,7 @@ and if the hub is currently connected.
 
 </dt>
 <dd>
-    <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/#io-type-id">https://lego.github.io/lego-ble-wireless-protocol-docs/#io-type-id</a>
-additional types from:
-<a href="https://docs.pybricks.com/projects/pybricksdev/en/latest/api/ble/lwp3/bytecodes.html">https://docs.pybricks.com/projects/pybricksdev/en/latest/api/ble/lwp3/bytecodes.html</a> 
+     
 </dd>
 
 
@@ -558,7 +547,7 @@ additional types from:
 
 </dt>
 <dd>
-  <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/#error-codes">https://lego.github.io/lego-ble-wireless-protocol-docs/#error-codes</a> 
+  Protocol Errors Codes <a href="../flutter_lwp/ErrorCode-class.html">[...]</a>
 </dd>
 
         <dt id="HubAttachedIOEvent">
@@ -566,7 +555,7 @@ additional types from:
 
 </dt>
 <dd>
-  <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/#event">https://lego.github.io/lego-ble-wireless-protocol-docs/#event</a> 
+  Enums detailing if ports are attached or detached. <a href="../flutter_lwp/HubAttachedIOEvent-class.html">[...]</a>
 </dd>
 
         <dt id="HubOperation">
@@ -574,7 +563,7 @@ additional types from:
 
 </dt>
 <dd>
-  <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/#hub-property-operation">https://lego.github.io/lego-ble-wireless-protocol-docs/#hub-property-operation</a> 
+  Hub Operation enum <a href="../flutter_lwp/HubOperation-class.html">[...]</a>
 </dd>
 
         <dt id="HubProperty">
@@ -582,7 +571,7 @@ additional types from:
 
 </dt>
 <dd>
-   
+  Hub Property <a href="../flutter_lwp/HubProperty-class.html">[...]</a>
 </dd>
 
         <dt id="IOType">
@@ -590,7 +579,7 @@ additional types from:
 
 </dt>
 <dd>
-  <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/#io-type-id">https://lego.github.io/lego-ble-wireless-protocol-docs/#io-type-id</a> 
+  IOTypes for attached <a href="../flutter_lwp/Peripheral-class.html">Peripheral</a>s. <a href="../flutter_lwp/IOType-class.html">[...]</a>
 </dd>
 
         <dt id="MessageType">
@@ -598,7 +587,8 @@ additional types from:
 
 </dt>
 <dd>
-  <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/#message-types">https://lego.github.io/lego-ble-wireless-protocol-docs/#message-types</a> 
+  The top level message type for messages
+to and from the Hub. Used by <a href="../flutter_lwp/Message-class.html">Message</a> <a href="../flutter_lwp/MessageType-class.html">[...]</a>
 </dd>
 
         <dt id="MotorAccelerationProfile">
@@ -606,7 +596,7 @@ additional types from:
 
 </dt>
 <dd>
-   
+  Acceleration/Deceleration profile to use for Motor Commands <a href="../flutter_lwp/MotorAccelerationProfile-class.html">[...]</a>
 </dd>
 
         <dt id="MotorEndState">
@@ -614,7 +604,8 @@ additional types from:
 
 </dt>
 <dd>
-   
+  Controls the state of the motor at the end of a command
+used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.html">StartSpeedForDegreesMessage</a>. <a href="../flutter_lwp/MotorEndState-class.html">[...]</a>
 </dd>
 
         <dt id="PortCapabilities">
@@ -622,7 +613,7 @@ additional types from:
 
 </dt>
 <dd>
-   
+  Port Capabilities. <a href="../flutter_lwp/PortCapabilities-class.html">[...]</a>
 </dd>
 
         <dt id="PortInformationRequestType">
@@ -630,7 +621,7 @@ additional types from:
 
 </dt>
 <dd>
-  <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#port-information-request-format">https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#port-information-request-format</a> 
+  Information Request <a href="../flutter_lwp/PortInformationRequestType-class.html">[...]</a>
 </dd>
 
         <dt id="PortModeInformationType">
@@ -638,7 +629,7 @@ additional types from:
 
 </dt>
 <dd>
-  <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#mod-ityp">https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#mod-ityp</a> 
+   
 </dd>
 
         <dt id="PortOutputCompletion">
@@ -646,7 +637,7 @@ additional types from:
 
 </dt>
 <dd>
-   
+  Completion options. <a href="../flutter_lwp/PortOutputCompletion-class.html">[...]</a>
 </dd>
 
         <dt id="PortOutputFeedback">
@@ -654,7 +645,7 @@ additional types from:
 
 </dt>
 <dd>
-   
+  Enum detailing the result of a <a href="../flutter_lwp/PortOutputCommandMessage-class.html">PortOutputCommandMessage</a>. <a href="../flutter_lwp/PortOutputFeedback-class.html">[...]</a>
 </dd>
 
         <dt id="PortOutputStartup">
@@ -662,7 +653,7 @@ additional types from:
 
 </dt>
 <dd>
-  <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/#error-codes">https://lego.github.io/lego-ble-wireless-protocol-docs/#error-codes</a> 
+  Controls queue behavior for <a href="../flutter_lwp/PortOutputCommandMessage-class.html">PortOutputCommandMessage</a> <a href="../flutter_lwp/PortOutputStartup-class.html">[...]</a>
 </dd>
 
         <dt id="PortSubCommand">
@@ -670,7 +661,7 @@ additional types from:
 
 </dt>
 <dd>
-   
+  PortSubCommand values for <a href="../flutter_lwp/PortOutputCommandMessage-class.html">PortOutputCommandMessage</a> <a href="../flutter_lwp/PortSubCommand-class.html">[...]</a>
 </dd>
 
       </dl>
@@ -731,7 +722,6 @@ additional types from:
     <h5><span class="package-name">flutter_lwp</span> <span class="package-kind">package</span></h5>
     <ol>
       <li class="section-title">Libraries</li>
-      <li><a href="../flutter_blue_transport/flutter_blue_transport-library.html">flutter_blue_transport</a></li>
       <li><a href="../flutter_lwp/flutter_lwp-library.html">flutter_lwp</a></li>
 </ol>
 
@@ -741,10 +731,8 @@ additional types from:
     <h5>flutter_lwp library</h5>
     <ol>
   <li class="section-title"><a href="../flutter_lwp/flutter_lwp-library.html#classes">Classes</a></li>
-  <li><a href="../flutter_lwp/EmptyMessage-class.html">EmptyMessage</a></li>
   <li><a href="../flutter_lwp/ErrorMessage-class.html">ErrorMessage</a></li>
   <li><a href="../flutter_lwp/GotoAbsolutePositionMessage-class.html">GotoAbsolutePositionMessage</a></li>
-  <li><a href="../flutter_lwp/Helper-class.html">Helper</a></li>
   <li><a href="../flutter_lwp/HubAttachedIOBaseMessage-class.html">HubAttachedIOBaseMessage</a></li>
   <li><a href="../flutter_lwp/HubAttachedIOMessage-class.html">HubAttachedIOMessage</a></li>
   <li><a href="../flutter_lwp/HubAttachedVirtualIOMessage-class.html">HubAttachedVirtualIOMessage</a></li>

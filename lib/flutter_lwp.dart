@@ -1,8 +1,17 @@
+/// flutter_lwp contains the functionality to interact with Lego PoweredUp hubs using the LWP protocol.
+///
+/// Disclaimer: This code was not written nor endorsed by Lego. It was written based on
+/// the protocol definitions published by Lego [here](https://lego.github.io/lego-ble-wireless-protocol-docs/).
+///
+/// Getting started
+/// ---------------
+///
+/// The entry point for the library is the [IHubScanner] and [IHub].
+///
 library flutter_lwp;
 
 import 'dart:async';
 import 'dart:collection';
-import 'dart:convert';
 import 'dart:typed_data';
 
 import 'flutter_blue/transport.dart' as flutter_blue_transport;
@@ -24,9 +33,8 @@ part 'lwp_port_output_command_feedback.dart';
 part 'lwp_port_value.dart';
 part 'lwp_transaction.dart';
 
-// https://lego.github.io/lego-ble-wireless-protocol-docs/
-// https://brickset.com/parts/6142536/hub-no-2
-
+/// @nodoc
+/// Internal class useful for decoding the LWP data.
 class Helper {
   static bool debug = false;
 

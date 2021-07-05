@@ -1,0 +1,3 @@
+dartdoc:
+  examplePathPrefix: example
+  nodoc: ['lib/flutter_blue/*.dart']

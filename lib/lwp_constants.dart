@@ -1,5 +1,9 @@
 part of flutter_lwp;
 
+/// The top level message type for messages
+/// to and from the Hub. Used by [Message]
+///
+/// Full details:
 /// https://lego.github.io/lego-ble-wireless-protocol-docs/#message-types
 enum MessageType {
   Empty,
@@ -122,8 +126,28 @@ extension MessageTypeValue on MessageType {
   }
 }
 
+/// Hub Operation enum
+///
+/// Full details:
 /// https://lego.github.io/lego-ble-wireless-protocol-docs/#hub-property-operation
-enum HubOperation { Set, EnableUpdates, DisableUpdates, Reset, RequestUpdate, Update }
+enum HubOperation {
+  Set,
+
+  /// enable updates to arrive from the hub. For example [HubAttachedIOMessage]/[HubDetachedIOMessage] messages.
+  EnableUpdates,
+
+  /// disable the updates from the hub
+  DisableUpdates,
+
+  /// reset the hub
+  Reset,
+
+  /// request a update of the update status.
+  RequestUpdate,
+
+  /// enum used by hub to answer [RequestUpdate] and [EnableUpdates]
+  Update
+}
 
 extension HubOperationValue on HubOperation {
   static const int _Set = 0x01;
@@ -171,6 +195,10 @@ extension HubOperationValue on HubOperation {
   }
 }
 
+/// Hub Property
+///
+/// Full details:
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/#hub-property-reference
 enum HubProperty {
   AdvertisingName,
   ButtonState,
@@ -189,7 +217,6 @@ enum HubProperty {
   NetworkFamily
 }
 
-/// https://lego.github.io/lego-ble-wireless-protocol-docs/#hub-property-reference
 extension HubPropertyValue on HubProperty {
   static const int _AdvertisingName = 0x01;
   static const int _ButtonState = 0x02;
@@ -280,6 +307,9 @@ extension HubPropertyValue on HubProperty {
   }
 }
 
+/// Enums detailing if ports are attached or detached.
+///
+/// Full details:
 /// https://lego.github.io/lego-ble-wireless-protocol-docs/#event
 enum HubAttachedIOEvent { Attached, Detached, AttachedVirtual }
 
@@ -313,7 +343,12 @@ extension HubAttachedIOEventValue on HubAttachedIOEvent {
   }
 }
 
+/// IOTypes for attached [Peripheral]s.
+///
+/// Full details:
 /// https://lego.github.io/lego-ble-wireless-protocol-docs/#io-type-id
+/// additional types from:
+/// https://docs.pybricks.com/projects/pybricksdev/en/latest/api/ble/lwp3/bytecodes.html
 enum IOType {
   Motor,
   SystemTrainMotor,
@@ -341,9 +376,6 @@ enum IOType {
   LargeAngularMotor,
 }
 
-/// https://lego.github.io/lego-ble-wireless-protocol-docs/#io-type-id
-/// additional types from:
-/// https://docs.pybricks.com/projects/pybricksdev/en/latest/api/ble/lwp3/bytecodes.html
 extension IOTypeValue on IOType {
   static Map<IOType, int> _mapping = {
     IOType.Motor: 0x0001,
@@ -391,6 +423,9 @@ extension IOTypeValue on IOType {
   }
 }
 
+/// Protocol Errors Codes
+///
+/// Full details:
 /// https://lego.github.io/lego-ble-wireless-protocol-docs/#error-codes
 enum ErrorCode { ACK, MACK, BufferOverflow, Timeout, CommandNotRecognized, InvalidUse, OverCurrent, InternalError }
 
@@ -426,9 +461,10 @@ extension ErrorCodeValue on ErrorCode {
   }
 }
 
-/// https://lego.github.io/lego-ble-wireless-protocol-docs/#error-codes
-enum PortOutputStartup { BufferIfNeeded, Immediate }
-enum PortOutputCompletion { NoAction, Feedback }
+/// Enum detailing the result of a [PortOutputCommandMessage].
+///
+/// Full details:
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#port-output-command-feedback
 enum PortOutputFeedback { BufferEmptyInProgress, BufferEmptyCompleted, CommandsDiscarded, Idle, Busy }
 
 extension PortOutputFeedbackValue on PortOutputFeedback {
@@ -478,6 +514,20 @@ extension PortOutputFeedbackValue on PortOutputFeedback {
   }
 }
 
+/// Controls queue behavior for [PortOutputCommandMessage]
+///
+/// Full details:
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#st-comp
+enum PortOutputStartup {
+  /// Buffers the command if needed, note there is only room for a single buffer
+  /// in the Hub's queue.
+  BufferIfNeeded,
+
+  /// Cancel ongoing command and immediately
+  /// send this command.
+  Immediate
+}
+
 extension PortOutputStartupValue on PortOutputStartup {
   static Map<PortOutputStartup, int> _mapping = {
     PortOutputStartup.BufferIfNeeded: 0x00,
@@ -502,6 +552,18 @@ extension PortOutputStartupValue on PortOutputStartup {
 
     return found!;
   }
+}
+
+/// Completion options.
+///
+/// Full details:
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#st-comp
+enum PortOutputCompletion {
+  /// don't give any feedback upon completion.
+  NoAction,
+
+  /// send a PortOutputCommandFeedback message when done.
+  Feedback
 }
 
 extension PortOutputCompletionValue on PortOutputCompletion {
@@ -530,7 +592,23 @@ extension PortOutputCompletionValue on PortOutputCompletion {
   }
 }
 
-enum PortSubCommand { StartSpeed, StartSpeedForDegrees, GotoAbsolutePosition, WriteDirectModeData }
+/// PortSubCommand values for [PortOutputCommandMessage]
+///
+/// Full details:
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-command-0x81-motor-sub-commands-0x01-0x3f
+enum PortSubCommand {
+  /// Start motor at specified speed and does not stop.
+  StartSpeed,
+
+  /// Start motor at specified speed for a certain number of degrees.
+  StartSpeedForDegrees,
+
+  /// Move motor at specified speed to a certain rotation in degrees.
+  GotoAbsolutePosition,
+
+  /// Write commands directly to peripheral.
+  WriteDirectModeData
+}
 
 extension PortSubCommandValue on PortSubCommand {
   static Map<PortSubCommand, int> _mapping = {
@@ -560,9 +638,21 @@ extension PortSubCommandValue on PortSubCommand {
   }
 }
 
+/// Information Request
+///
+/// Full details
 /// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#port-information-request-format
 
-enum PortInformationRequestType { PortValue, ModeInfo, ModeCombinations }
+enum PortInformationRequestType {
+  /// Get a PortValueMessage
+  PortValue,
+
+  /// Get a ModeInfoMessage
+  ModeInfo,
+
+  /// Get all valid Mode combinations ( not implemented yet ).
+  ModeCombinations
+}
 
 extension PortInformationRequestTypeValue on PortInformationRequestType {
   static Map<PortInformationRequestType, int> _mapping = {
@@ -591,14 +681,23 @@ extension PortInformationRequestTypeValue on PortInformationRequestType {
   }
 }
 
+/// Port Capabilities.
+///
+/// Full details:
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#mod-ityp
 enum PortCapabilities {
+  /// Port can output (seen from Hub)
   Output,
+
+  /// Port can input (seen from Hub)
   Input,
+
+  /// Can combine commands to this port.
   LogicalCombinable,
+
+  /// Can synchronize commands to this port.
   LogicalSynchronizable,
 }
-
-/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#mod-ityp
 
 enum PortModeInformationType { NAME, RAW, PCT, SI, SYMBOL, MAPPING, INTERNAL, MOTOR_BIAS, CAPABILITY_BITS, VALUE_FORMAT }
 
@@ -636,7 +735,21 @@ extension PortModeInformationTypeValue on PortModeInformationType {
   }
 }
 
-enum MotorEndState { Float, Hold, Brake }
+/// Controls the state of the motor at the end of a command
+/// used by for example [StartSpeedForDegreesMessage].
+///
+/// Full details:
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-sub-command-startspeedfordegrees-degrees-speed-maxpower-endstate-useprofile-0x0b
+enum MotorEndState {
+  /// let the motor spin freely
+  Float,
+
+  /// Attempt to hold the position actively
+  Hold,
+
+  /// Resist any changes without correcting.
+  Brake
+}
 
 extension MotorEndStateValue on MotorEndState {
   static Map<MotorEndState, int> _mapping = {
@@ -665,6 +778,10 @@ extension MotorEndStateValue on MotorEndState {
   }
 }
 
+/// Acceleration/Deceleration profile to use for Motor Commands
+///
+/// Full details:
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-sub-command-startspeedfordegrees-degrees-speed-maxpower-endstate-useprofile-0x0b
 enum MotorAccelerationProfile { None, UseAcceleration, UseDeceleration, UseBoth }
 
 extension MotorAccelerationProfileValue on MotorAccelerationProfile {
