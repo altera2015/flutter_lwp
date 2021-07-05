@@ -1,0 +1,88 @@
+{
+  "type": "IOType.LargeMotor",
+  "hardwareRevision": 1048576,
+  "softwareRevision": 1048576,
+  "portId": 0,
+  "capabilities": [
+    "PortCapabilities.Output",
+    "PortCapabilities.Input",
+    "PortCapabilities.LogicalCombinable",
+    "PortCapabilities.LogicalSynchronizable"
+  ],
+  "inputModes": {
+    "1": {
+      "name": "SPEED",
+      "symbol": "PCT",
+      "rawRange": {
+        "min": -100.0,
+        "max": 100.0
+      }
+    },
+    "2": {
+      "name": "POS",
+      "symbol": "DEG",
+      "rawRange": {
+        "min": -360.0,
+        "max": 360.0
+      }
+    },
+    "3": {
+      "name": "APOS",
+      "symbol": "DEG",
+      "rawRange": {
+        "min": -360.0,
+        "max": 360.0
+      }
+    },
+    "4": {
+      "name": "LOAD",
+      "symbol": "PCT",
+      "rawRange": {
+        "min": 0.0,
+        "max": 127.0
+      }
+    }
+  },
+  "outputModes": {
+    "0": {
+      "name": "POWER",
+      "symbol": "PCT",
+      "rawRange": {
+        "min": -100.0,
+        "max": 100.0
+      }
+    },
+    "1": {
+      "name": "SPEED",
+      "symbol": "PCT",
+      "rawRange": {
+        "min": -100.0,
+        "max": 100.0
+      }
+    },
+    "2": {
+      "name": "POS",
+      "symbol": "DEG",
+      "rawRange": {
+        "min": -360.0,
+        "max": 360.0
+      }
+    },
+    "3": {
+      "name": "APOS",
+      "symbol": "DEG",
+      "rawRange": {
+        "min": -360.0,
+        "max": 360.0
+      }
+    },
+    "4": {
+      "name": "LOAD",
+      "symbol": "PCT",
+      "rawRange": {
+        "min": 0.0,
+        "max": 127.0
+      }
+    }
+  }
+}
