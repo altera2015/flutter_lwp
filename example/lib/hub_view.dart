@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lwp/flutter_lwp.dart';
 
 class HubView extends StatefulWidget {
-  final IHub hub;
+  final Hub hub;
 
   HubView({required this.hub, Key? key}) : super(key: key);
   @override

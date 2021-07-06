@@ -1,5 +1,8 @@
 part of flutter_lwp;
 
+/// Bases class for hub properties.
+///
+/// {@category messages}
 class HubPropertyMessage extends Message {
   HubProperty property;
   HubOperation operation;
@@ -47,6 +50,9 @@ class HubPropertyMessage extends Message {
   }
 }
 
+/// Battery State message.
+///
+/// {@category messages}
 class HubBatteryPropertyMessage extends HubPropertyMessage {
   HubBatteryPropertyMessage(HubOperation operation, {int batteryPct = 0}) : super(HubProperty.Battery, operation, payload: [batteryPct]);
 
@@ -67,6 +73,9 @@ class HubBatteryPropertyMessage extends HubPropertyMessage {
   }
 }
 
+/// Button State message
+///
+/// {@category messages}
 class HubButtonPropertyMessage extends HubPropertyMessage {
   HubButtonPropertyMessage(HubOperation operation, {bool buttonState = false}) : super(HubProperty.ButtonState, operation, payload: [buttonState ? 1 : 0]);
 

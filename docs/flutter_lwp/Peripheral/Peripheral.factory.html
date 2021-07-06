@@ -50,18 +50,22 @@
 </h1></div>
 
     <section class="multi-line-signature">
-      <span class="name ">Peripheral.factory</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="factory-param-hub"><span class="type-annotation"><a href="../../flutter_lwp/IHub-class.html">IHub</a></span> <span class="parameter-name">hub</span>, </span></li>
+      <span class="name ">Peripheral.factory</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="factory-param-hub"><span class="type-annotation"><a href="../../flutter_lwp/Hub-class.html">Hub</a></span> <span class="parameter-name">hub</span>, </span></li>
 <li><span class="parameter" id="factory-param-attachedIO"><span class="type-annotation"><a href="../../flutter_lwp/HubAttachedIOMessage-class.html">HubAttachedIOMessage</a></span> <span class="parameter-name">attachedIO</span></span></li>
 </ol>)
     </section>
 
     
+<section class="desc markdown">
+  <p>factory method to create peripherals depending
+on the <a href="../../flutter_lwp/IOType-class.html">IOType</a>.</p>
+</section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">factory Peripheral.factory(IHub hub, HubAttachedIOMessage attachedIO) {
+  <pre class="language-dart"><code class="language-dart">factory Peripheral.factory(Hub hub, HubAttachedIOMessage attachedIO) {
   switch (attachedIO.ioType) {
     case IOType.Motor:
     case IOType.LargeMotor:

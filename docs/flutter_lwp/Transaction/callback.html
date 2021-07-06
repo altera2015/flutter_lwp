@@ -50,7 +50,7 @@
 </h1></div>
 
         <section class="multi-line-signature">
-          <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span> Function<span class="signature">(<span class="parameter" id="param-send"><span class="type-annotation"><a href="../../flutter_lwp/IHubSendFunction.html">IHubSendFunction</a></span> <span class="parameter-name">send</span>, </span><span class="parameter" id="param-stream"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../flutter_lwp/Message-class.html">Message</a></span>&gt;</span></span> <span class="parameter-name">stream</span></span>)</span>
+          <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span> Function<span class="signature">(<span class="parameter" id="param-send"><span class="type-annotation"><a href="../../flutter_lwp/IHubTransportSendFunction.html">IHubTransportSendFunction</a></span> <span class="parameter-name">send</span>, </span><span class="parameter" id="param-stream"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../flutter_lwp/Message-class.html">Message</a></span>&gt;</span></span> <span class="parameter-name">stream</span></span>)</span>
           <span class="name ">callback</span>
           <div class="features">final</div>
 
@@ -60,7 +60,7 @@
         
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">final Future&lt;T?&gt; Function(IHubSendFunction send, Stream&lt;Message&gt; stream) callback;
+  <pre class="language-dart"><code class="language-dart">final Future&lt;T?&gt; Function(IHubTransportSendFunction send, Stream&lt;Message&gt; stream) callback;
 
 </code></pre>
 </section>

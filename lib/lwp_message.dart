@@ -1,6 +1,7 @@
 part of flutter_lwp;
 
 /// Base class for all messages in and out of the Hub.
+/// {@category messages}
 abstract class Message {
   int hubId;
   MessageType messageType;
@@ -59,6 +60,7 @@ abstract class Message {
 }
 
 /// {@nodoc}
+/// {@category messages}
 class EmptyMessage extends Message {
   EmptyMessage() : super(messageType: MessageType.Empty);
 

@@ -55,9 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
               return ListView.builder(
                   itemCount: list.length,
                   itemBuilder: (BuildContext context, int index) {
-                    IHub hub = list[index];
+                    Hub hub = list[index];
                     return ListTile(
                       title: Text("${hub.name}"),
+                      subtitle: Text("${hub.id}"),
                       onTap: () async {
                         hub.connect();
                         await Navigator.push(

@@ -47,9 +47,17 @@
 <h1><span class="kind-class">Transaction&lt;<wbr><span class="type-parameter">T</span>&gt;</span> class 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
  
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 </h1></div>
 
     
+<section class="desc markdown">
+  <p>transactions are used to facilitate communications with the hub.</p>
+<p>Typical message flow is an request and answer pattern. The <a href="../flutter_lwp/SimpleTransaction-class.html">SimpleTransaction</a> handles
+this most simple case. If there is any other pattern <a href="../flutter_lwp/Transaction-class.html">Transaction</a> is flexible enough
+to account for most cases.</p>
+<p>Have a look at the <a href="../flutter_lwp/SimpleTransaction-class.html">SimpleTransaction</a> implementation on how to use this.</p>
+</section>
 
 
     <section>
@@ -71,7 +79,7 @@
 
       <dl class="constructor-summary-list">
         <dt id="Transaction" class="callable">
-          <span class="name"><a href="../flutter_lwp/Transaction/Transaction.html">Transaction</a></span><span class="signature">(<span class="parameter" id="-param-callback">{<span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span> <span class="parameter-name">callback</span>(<span class="parameter" id="param-send"><span class="type-annotation"><a href="../flutter_lwp/IHubSendFunction.html">IHubSendFunction</a></span> <span class="parameter-name">send</span>, </span><span class="parameter" id="param-stream"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../flutter_lwp/Message-class.html">Message</a></span>&gt;</span></span> <span class="parameter-name">stream</span></span>), </span><span class="parameter" id="-param-maxTries"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">maxTries</span> = <span class="default-value">4</span>}</span>)</span>
+          <span class="name"><a href="../flutter_lwp/Transaction/Transaction.html">Transaction</a></span><span class="signature">(<span class="parameter" id="-param-callback">{<span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span> <span class="parameter-name">callback</span>(<span class="parameter" id="param-send"><span class="type-annotation"><a href="../flutter_lwp/IHubTransportSendFunction.html">IHubTransportSendFunction</a></span> <span class="parameter-name">send</span>, </span><span class="parameter" id="param-stream"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../flutter_lwp/Message-class.html">Message</a></span>&gt;</span></span> <span class="parameter-name">stream</span></span>), </span><span class="parameter" id="-param-maxTries"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">maxTries</span> = <span class="default-value">4</span>}</span>)</span>
         </dt>
         <dd>
            
@@ -85,7 +93,7 @@
       <dl class="properties">
         <dt id="callback" class="property">
   <span class="name"><a href="../flutter_lwp/Transaction/callback.html">callback</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span> Function<span class="signature">(<span class="parameter" id="param-send"><span class="type-annotation"><a href="../flutter_lwp/IHubSendFunction.html">IHubSendFunction</a></span> <span class="parameter-name">send</span>, </span><span class="parameter" id="param-stream"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../flutter_lwp/Message-class.html">Message</a></span>&gt;</span></span> <span class="parameter-name">stream</span></span>)</span></span> 
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span> Function<span class="signature">(<span class="parameter" id="param-send"><span class="type-annotation"><a href="../flutter_lwp/IHubTransportSendFunction.html">IHubTransportSendFunction</a></span> <span class="parameter-name">send</span>, </span><span class="parameter" id="param-stream"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../flutter_lwp/Message-class.html">Message</a></span>&gt;</span></span> <span class="parameter-name">stream</span></span>)</span></span> 
 
 </dt>
 <dd>
@@ -158,7 +166,7 @@
 </dd>
 
         <dt id="run" class="callable">
-  <span class="name"><a href="../flutter_lwp/Transaction/run.html">run</a></span><span class="signature">(<wbr><span class="parameter" id="run-param-send"><span class="type-annotation"><a href="../flutter_lwp/IHubSendFunction.html">IHubSendFunction</a></span> <span class="parameter-name">send</span>, </span><span class="parameter" id="run-param-stream"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../flutter_lwp/Message-class.html">Message</a></span>&gt;</span></span> <span class="parameter-name">stream</span></span>)
+  <span class="name"><a href="../flutter_lwp/Transaction/run.html">run</a></span><span class="signature">(<wbr><span class="parameter" id="run-param-send"><span class="type-annotation"><a href="../flutter_lwp/IHubTransportSendFunction.html">IHubTransportSendFunction</a></span> <span class="parameter-name">send</span>, </span><span class="parameter" id="run-param-stream"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../flutter_lwp/Message-class.html">Message</a></span>&gt;</span></span> <span class="parameter-name">stream</span></span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
   </span>
   
@@ -229,6 +237,7 @@
   <li class="section-title"><a href="../flutter_lwp/flutter_lwp-library.html#classes">Classes</a></li>
   <li><a href="../flutter_lwp/ErrorMessage-class.html">ErrorMessage</a></li>
   <li><a href="../flutter_lwp/GotoAbsolutePositionMessage-class.html">GotoAbsolutePositionMessage</a></li>
+  <li><a href="../flutter_lwp/Hub-class.html">Hub</a></li>
   <li><a href="../flutter_lwp/HubAttachedIOBaseMessage-class.html">HubAttachedIOBaseMessage</a></li>
   <li><a href="../flutter_lwp/HubAttachedIOMessage-class.html">HubAttachedIOMessage</a></li>
   <li><a href="../flutter_lwp/HubAttachedVirtualIOMessage-class.html">HubAttachedVirtualIOMessage</a></li>
@@ -237,8 +246,8 @@
   <li><a href="../flutter_lwp/HubDetachedIOMessage-class.html">HubDetachedIOMessage</a></li>
   <li><a href="../flutter_lwp/HubPropertyMessage-class.html">HubPropertyMessage</a></li>
   <li><a href="../flutter_lwp/HubState-class.html">HubState</a></li>
-  <li><a href="../flutter_lwp/IHub-class.html">IHub</a></li>
   <li><a href="../flutter_lwp/IHubScanner-class.html">IHubScanner</a></li>
+  <li><a href="../flutter_lwp/IHubTransport-class.html">IHubTransport</a></li>
   <li><a href="../flutter_lwp/Message-class.html">Message</a></li>
   <li><a href="../flutter_lwp/MotorPeripheral-class.html">MotorPeripheral</a></li>
   <li><a href="../flutter_lwp/Peripheral-class.html">Peripheral</a></li>
@@ -309,7 +318,7 @@
 
   <li class="section-title"><a href="../flutter_lwp/flutter_lwp-library.html#typedefs">Typedefs</a></li>
   <li><a href="../flutter_lwp/HubList.html">HubList</a></li>
-  <li><a href="../flutter_lwp/IHubSendFunction.html">IHubSendFunction</a></li>
+  <li><a href="../flutter_lwp/IHubTransportSendFunction.html">IHubTransportSendFunction</a></li>
 
 </ol>
 

@@ -1,5 +1,8 @@
 part of flutter_lwp;
 
+/// Base class for [HubAttachedIOMessage], [HubDetachedIOMessage] and [HubAttachedVirtualIOMessage]
+///
+/// {@category messages}
 class HubAttachedIOBaseMessage extends Message {
   int portId;
   HubAttachedIOEvent event;
@@ -48,6 +51,10 @@ class HubAttachedIOBaseMessage extends Message {
   }
 }
 
+/// Fired when a new peripheral is attached or on
+/// first connection.
+///
+/// {@category messages}
 class HubAttachedIOMessage extends HubAttachedIOBaseMessage {
   final IOType ioType;
   final int hardwareRevision;
@@ -62,6 +69,9 @@ class HubAttachedIOMessage extends HubAttachedIOBaseMessage {
   }
 }
 
+/// Fired when a peripheral is detached.
+///
+/// {@category messages}
 class HubDetachedIOMessage extends HubAttachedIOBaseMessage {
   HubDetachedIOMessage(int portId) : super(portId, HubAttachedIOEvent.Detached, payload: []);
 
@@ -70,6 +80,10 @@ class HubDetachedIOMessage extends HubAttachedIOBaseMessage {
   }
 }
 
+/// Fired when a new virtual peripheral is created or on
+/// first connection.
+///
+/// {@category messages}
 class HubAttachedVirtualIOMessage extends HubAttachedIOBaseMessage {
   final IOType ioType;
   final int portA;

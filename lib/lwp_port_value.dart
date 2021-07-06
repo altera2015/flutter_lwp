@@ -1,5 +1,6 @@
 part of flutter_lwp;
 
+/// {@category messages}
 class PortValueMessage extends Message {
   final int portId;
   final int value;

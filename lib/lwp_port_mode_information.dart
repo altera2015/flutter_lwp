@@ -1,5 +1,7 @@
 part of flutter_lwp;
 
+/// Information about port modes.
+/// {@category messages}
 class PortModeInformationMessage extends Message {
   final int portId;
   final int mode;
@@ -41,6 +43,7 @@ class PortModeInformationMessage extends Message {
   }
 }
 
+/// {@category messages}
 class PortModeInformationMessageNAME extends PortModeInformationMessage {
   final String name;
 
@@ -56,6 +59,7 @@ class PortModeInformationMessageNAME extends PortModeInformationMessage {
   }
 }
 
+/// {@category messages}
 class PortModeInformationMessageSYMBOL extends PortModeInformationMessageNAME {
   PortModeInformationMessageSYMBOL(int portId, int mode, PortModeInformationType informationType, String name) : super(portId, mode, informationType, name);
 
@@ -64,6 +68,7 @@ class PortModeInformationMessageSYMBOL extends PortModeInformationMessageNAME {
   }
 }
 
+/// {@category messages}
 class PortModeInformationMessageRAW extends PortModeInformationMessage {
   final double minimum;
   final double maximum;
@@ -81,6 +86,7 @@ class PortModeInformationMessageRAW extends PortModeInformationMessage {
   }
 }
 
+/// {@category messages}
 class PortModeInformationMessagePCT extends PortModeInformationMessageRAW {
   PortModeInformationMessagePCT(int portId, int mode, PortModeInformationType informationType, double minimum, double maximum)
       : super(portId, mode, informationType, minimum, maximum);
@@ -90,6 +96,7 @@ class PortModeInformationMessagePCT extends PortModeInformationMessageRAW {
   }
 }
 
+/// {@category messages}
 class PortModeInformationMessageSI extends PortModeInformationMessageRAW {
   PortModeInformationMessageSI(int portId, int mode, PortModeInformationType informationType, double minimum, double maximum)
       : super(portId, mode, informationType, minimum, maximum);
@@ -99,6 +106,7 @@ class PortModeInformationMessageSI extends PortModeInformationMessageRAW {
   }
 }
 
+/// {@category messages}
 class PortModeInformationMessageMotorBias extends PortModeInformationMessage {
   final int bias;
 

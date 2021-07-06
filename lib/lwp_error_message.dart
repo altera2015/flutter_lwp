@@ -1,5 +1,8 @@
 part of flutter_lwp;
 
+///Error message from the hub.
+///
+/// {@category messages}
 class ErrorMessage extends Message {
   MessageType errorType;
   ErrorCode errorCode;

@@ -64,6 +64,10 @@
 
     </section>
     
+<section class="desc markdown">
+  <p>Runs motor for set number of degrees at specified speed using at most maxPower using the
+acceleration profile specified in useProfile.</p>
+</section>
 
 
     
@@ -77,7 +81,7 @@
   if (msg == null) {
     return false;
   }
-  print(&quot;startSpeedForDegrees got $msg&quot;);
+  Helper.dprint(&quot;startSpeedForDegrees got $msg&quot;);
   return true;
 }</code></pre>
 </section>

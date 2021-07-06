@@ -53,7 +53,7 @@
       
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
-<span class="name ">queue</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="queue-param-hub"><span class="type-annotation"><a href="../../flutter_lwp/IHub-class.html">IHub</a></span> <span class="parameter-name">hub</span></span></li>
+<span class="name ">queue</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="queue-param-hub"><span class="type-annotation"><a href="../../flutter_lwp/Hub-class.html">Hub</a></span> <span class="parameter-name">hub</span></span></li>
 </ol>)
 
       
@@ -65,7 +65,7 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;T?&gt; queue(IHub hub) async {
+  <pre class="language-dart"><code class="language-dart">Future&lt;T?&gt; queue(Hub hub) async {
   return await hub.queue(this);
 }</code></pre>
 </section>

@@ -65,7 +65,7 @@
   <pre class="language-dart"><code class="language-dart">SimpleTransaction({required this.msgToSend, int maxTries = 4, Duration timeout = const Duration(seconds: 1)})
     : super(
           maxTries: maxTries,
-          callback: (IHubSendFunction send, Stream&lt;Message&gt; stream) async {
+          callback: (IHubTransportSendFunction send, Stream&lt;Message&gt; stream) async {
             await send(msgToSend);
 
             Message msg = await stream.where((event) =&gt; event is T).timeout(timeout, onTimeout: (sink) {

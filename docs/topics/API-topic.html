@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API Topic docs, for the Dart programming language.">
+  <title>API Topic - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">flutter_lwp</a></li>
+    <li class="self-crumb">API Topic</li>
+  </ol>
+  <div class="self-name">API</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+<div id="dartdoc-main-content" class="main-content">
+  <h1><span class="kind-category">API</span> Topic</h1>
+  
+<section class="desc markdown">
+  <h1 id="api">API</h1>
+</section>
+
+
+
+  <section class="summary offset-anchor" id="classes">
+    <h2>Classes</h2>
+
+    <dl>
+      <dt id="Hub">
+  <span class="name "><a href="../flutter_lwp/Hub-class.html">Hub</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+</dt>
+<dd>
+  The main hub interaction class. 
+</dd>
+
+      <dt id="HubState">
+  <span class="name "><a href="../flutter_lwp/HubState-class.html">HubState</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+</dt>
+<dd>
+  HubState contains the state of the hub
+This includes which peripherals are attached
+and if the hub is currently connected. 
+</dd>
+
+      <dt id="IHubScanner">
+  <span class="name "><a href="../flutter_lwp/IHubScanner-class.html">IHubScanner</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+</dt>
+<dd>
+  The main class used to discover hubs. 
+</dd>
+
+      <dt id="MotorPeripheral">
+  <span class="name "><a href="../flutter_lwp/MotorPeripheral-class.html">MotorPeripheral</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+</dt>
+<dd>
+  MotorPeripheral class using <a href="../flutter_lwp/Motor-mixin.html">Motor</a> mixin. 
+</dd>
+
+      <dt id="Peripheral">
+  <span class="name "><a href="../flutter_lwp/Peripheral-class.html">Peripheral</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+</dt>
+<dd>
+  Master Peripheral class. <a href="../flutter_lwp/Peripheral-class.html">[...]</a>
+</dd>
+
+      <dt id="PeripheralMode">
+  <span class="name "><a href="../flutter_lwp/PeripheralMode-class.html">PeripheralMode</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+</dt>
+<dd>
+  Mode container 
+</dd>
+
+      <dt id="PeripheralModeRange">
+  <span class="name "><a href="../flutter_lwp/PeripheralModeRange-class.html">PeripheralModeRange</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+</dt>
+<dd>
+  Range container. 
+</dd>
+
+      <dt id="RetryException">
+  <span class="name "><a href="../flutter_lwp/RetryException-class.html">RetryException</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+</dt>
+<dd>
+  If a transaction has failed and should retry, throw <a href="../flutter_lwp/RetryException-class.html">RetryException</a> inside the transaction.
+The <a href="../flutter_lwp/Transaction-class.html">Transaction</a> class will retry <a href="../flutter_lwp/Transaction/maxTries.html">Transaction.maxTries</a> number of times. 
+</dd>
+
+      <dt id="SimpleTransaction">
+  <span class="name "><a href="../flutter_lwp/SimpleTransaction-class.html">SimpleTransaction</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+</dt>
+<dd>
+  Simple transaction provides an easy way to interact with the Hub using the
+request/response pattern with retries. <a href="../flutter_lwp/SimpleTransaction-class.html">[...]</a>
+</dd>
+
+      <dt id="Transaction">
+  <span class="name "><a href="../flutter_lwp/Transaction-class.html">Transaction</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+</dt>
+<dd>
+  transactions are used to facilitate communications with the hub. <a href="../flutter_lwp/Transaction-class.html">[...]</a>
+</dd>
+
+    </dl>
+  </section>
+
+  <section class="summary offset-anchor" id="mixins">
+    <h2>Mixins</h2>
+
+    <dl>
+      <dt id="Motor">
+  <span class="name "><a href="../flutter_lwp/Motor-mixin.html">Motor</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+</dt>
+<dd>
+  Motor actions for Peripherals. 
+</dd>
+
+    </dl>
+  </section>
+
+
+
+
+
+  <section class="summary offset-anchor" id="typedefs">
+    <h2>Typedefs</h2>
+
+    <dl class="callables">
+      
+  <dt id="HubList" class="">
+  <span class="name"><a href="../flutter_lwp/HubList.html">HubList</a></span>
+    = <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../flutter_lwp/Hub-class.html">Hub</a></span>&gt;</span>
+  </span>
+  
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+</dt>
+<dd>
+  List of Hubs. 
+  
+
+</dd>
+
+
+      
+  <dt id="IHubTransportSendFunction" class="callable">
+    <span class="name"><a href="../flutter_lwp/IHubTransportSendFunction.html">IHubTransportSendFunction</a></span><span class="signature">
+      <span class="returntype parameter">= <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span> Function<span class="signature">(<span class="parameter" id="param-msg"><span class="type-annotation"><a href="../flutter_lwp/Message-class.html">Message</a></span> <span class="parameter-name">msg</span></span>)</span></span>
+    </span>
+    
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
+
+  </dt>
+  <dd>
+     
+    
+
+  </dd>
+
+    </dl>
+  </section>
+
+
+</div> <!-- /.main-content -->
+
+<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+  <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">flutter_lwp</a></li>
+  <li class="self-crumb">API Topic</li>
+</ol>
+
+
+  <h5><span class="package-name">flutter_lwp</span> <span class="package-kind">package</span></h5>
+  <ol>
+      <li class="section-title">Topics</li>
+        <li><a href="../topics/API-topic.html">API</a></li>
+        <li><a href="../topics/backend-topic.html">backend</a></li>
+        <li><a href="../topics/messages-topic.html">messages</a></li>
+      <li class="section-title">Libraries</li>
+      <li><a href="../flutter_lwp/flutter_lwp-library.html">flutter_lwp</a></li>
+      <li class="section-subtitle">backend</li>
+        <li class="section-subitem"><a href="../flutter_blue_transport/flutter_blue_transport-library.html">flutter_blue_transport</a></li>
+</ol>
+
+</div>
+
+<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  <h5>API Topic</h5>
+  <ol>
+
+  <li class="section-title"><a href="../topics/API-topic.html#mixins">Mixins</a></li>
+  <li><a href="../flutter_lwp/Motor-mixin.html">Motor</a></li>
+
+  <li class="section-title"><a href="../topics/API-topic.html#classes">Classes</a></li>
+  <li><a href="../flutter_lwp/Hub-class.html">Hub</a></li>
+  <li><a href="../flutter_lwp/HubState-class.html">HubState</a></li>
+  <li><a href="../flutter_lwp/IHubScanner-class.html">IHubScanner</a></li>
+  <li><a href="../flutter_lwp/MotorPeripheral-class.html">MotorPeripheral</a></li>
+  <li><a href="../flutter_lwp/Peripheral-class.html">Peripheral</a></li>
+  <li><a href="../flutter_lwp/PeripheralMode-class.html">PeripheralMode</a></li>
+  <li><a href="../flutter_lwp/PeripheralModeRange-class.html">PeripheralModeRange</a></li>
+  <li><a href="../flutter_lwp/RetryException-class.html">RetryException</a></li>
+  <li><a href="../flutter_lwp/SimpleTransaction-class.html">SimpleTransaction</a></li>
+  <li><a href="../flutter_lwp/Transaction-class.html">Transaction</a></li>
+
+
+
+
+
+  <li class="section-title"><a href="../topics/API-topic.html#typedefs">Typedefs</a></li>
+  <li><a href="../flutter_lwp/HubList.html">HubList</a></li>
+  <li><a href="../flutter_lwp/IHubTransportSendFunction.html">IHubTransportSendFunction</a></li>
+
+</ol>
+
+</div>
+<!--/sidebar-offcanvas-right-->
+</main>
+
+<footer>
+  <span class="no-break">
+    flutter_lwp
+      0.0.1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

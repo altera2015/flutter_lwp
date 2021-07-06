@@ -1,5 +1,11 @@
 part of flutter_lwp;
 
+/// Port Input format setup message
+///
+/// Used to setup automatic value reporting from a port.
+/// Hub answers with [PortInputFormatMessage]
+///
+/// {@category messages}
 class PortInputFormatSetupMessage extends Message {
   final int portId;
   final int mode;
@@ -31,6 +37,9 @@ class PortInputFormatSetupMessage extends Message {
   }
 }
 
+/// Port Input format setup message
+///
+/// {@category messages}
 class PortInputFormatMessage extends Message {
   final int portId;
   final int mode;

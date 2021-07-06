@@ -1,3 +1,12 @@
 dartdoc:
+  categories:
+    "API":
+      markdown: doc/api.md
+    "messages":
+      markdown: doc/messages.md
+      name: "messages"
+    "backend":
+      markdown: doc/backend.md
   examplePathPrefix: example
-  nodoc: ['lib/flutter_blue/*.dart']
+  favicon: doc/favicon.ico
+  linkTo: https://altera2015.github.io/flutter_lwp/

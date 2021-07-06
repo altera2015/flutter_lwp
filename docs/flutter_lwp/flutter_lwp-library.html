@@ -54,7 +54,7 @@
 <p>Disclaimer: This code was not written nor endorsed by Lego. It was written based on
 the protocol definitions published by Lego <a href="https://lego.github.io/lego-ble-wireless-protocol-docs/">here</a>.</p>
 <h2 id="getting-started">Getting started</h2>
-<p>The entry point for the library is the <a href="../flutter_lwp/IHubScanner-class.html">IHubScanner</a> and <a href="../flutter_lwp/IHub-class.html">IHub</a>.</p>
+<p>The entry point for the library is the <a href="../flutter_lwp/IHubScanner-class.html">IHubScanner</a> and <a href="../flutter_lwp/Hub-class.html">Hub</a>.</p>
 </section>
 
 
@@ -64,78 +64,99 @@ the protocol definitions published by Lego <a href="https://lego.github.io/lego-
       <dl>
         <dt id="ErrorMessage">
   <span class="name "><a href="../flutter_lwp/ErrorMessage-class.html">ErrorMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Error message from the hub. 
 </dd>
 
         <dt id="GotoAbsolutePositionMessage">
   <span class="name "><a href="../flutter_lwp/GotoAbsolutePositionMessage-class.html">GotoAbsolutePositionMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
   Move motor to an absolute rotation <a href="../flutter_lwp/GotoAbsolutePositionMessage-class.html">[...]</a>
 </dd>
 
-        <dt id="HubAttachedIOBaseMessage">
-  <span class="name "><a href="../flutter_lwp/HubAttachedIOBaseMessage-class.html">HubAttachedIOBaseMessage</a></span> 
+        <dt id="Hub">
+  <span class="name "><a href="../flutter_lwp/Hub-class.html">Hub</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
 </dt>
 <dd>
-   
+  The main hub interaction class. 
+</dd>
+
+        <dt id="HubAttachedIOBaseMessage">
+  <span class="name "><a href="../flutter_lwp/HubAttachedIOBaseMessage-class.html">HubAttachedIOBaseMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
+
+</dt>
+<dd>
+  Base class for <a href="../flutter_lwp/HubAttachedIOMessage-class.html">HubAttachedIOMessage</a>, <a href="../flutter_lwp/HubDetachedIOMessage-class.html">HubDetachedIOMessage</a> and <a href="../flutter_lwp/HubAttachedVirtualIOMessage-class.html">HubAttachedVirtualIOMessage</a> 
 </dd>
 
         <dt id="HubAttachedIOMessage">
   <span class="name "><a href="../flutter_lwp/HubAttachedIOMessage-class.html">HubAttachedIOMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Fired when a new peripheral is attached or on
+first connection. 
 </dd>
 
         <dt id="HubAttachedVirtualIOMessage">
   <span class="name "><a href="../flutter_lwp/HubAttachedVirtualIOMessage-class.html">HubAttachedVirtualIOMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Fired when a new virtual peripheral is created or on
+first connection. 
 </dd>
 
         <dt id="HubBatteryPropertyMessage">
   <span class="name "><a href="../flutter_lwp/HubBatteryPropertyMessage-class.html">HubBatteryPropertyMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Battery State message. 
 </dd>
 
         <dt id="HubButtonPropertyMessage">
   <span class="name "><a href="../flutter_lwp/HubButtonPropertyMessage-class.html">HubButtonPropertyMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Button State message 
 </dd>
 
         <dt id="HubDetachedIOMessage">
   <span class="name "><a href="../flutter_lwp/HubDetachedIOMessage-class.html">HubDetachedIOMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Fired when a peripheral is detached. 
 </dd>
 
         <dt id="HubPropertyMessage">
   <span class="name "><a href="../flutter_lwp/HubPropertyMessage-class.html">HubPropertyMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Bases class for hub properties. 
 </dd>
 
         <dt id="HubState">
   <span class="name "><a href="../flutter_lwp/HubState-class.html">HubState</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
 </dt>
 <dd>
@@ -144,24 +165,27 @@ This includes which peripherals are attached
 and if the hub is currently connected. 
 </dd>
 
-        <dt id="IHub">
-  <span class="name "><a href="../flutter_lwp/IHub-class.html">IHub</a></span> 
-
-</dt>
-<dd>
-  The main hub interaction class. 
-</dd>
-
         <dt id="IHubScanner">
   <span class="name "><a href="../flutter_lwp/IHubScanner-class.html">IHubScanner</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
 </dt>
 <dd>
   The main class used to discover hubs. 
 </dd>
 
+        <dt id="IHubTransport">
+  <span class="name "><a href="../flutter_lwp/IHubTransport-class.html">IHubTransport</a></span> 
+    <span class="category backend cp-1 linked" title="This is part of the backend Topic."><a href="../topics/backend-topic.html">backend</a></span>
+
+</dt>
+<dd>
+  HUB Transport interface 
+</dd>
+
         <dt id="Message">
   <span class="name "><a href="../flutter_lwp/Message-class.html">Message</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -170,94 +194,106 @@ and if the hub is currently connected.
 
         <dt id="MotorPeripheral">
   <span class="name "><a href="../flutter_lwp/MotorPeripheral-class.html">MotorPeripheral</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
 </dt>
 <dd>
-   
+  MotorPeripheral class using <a href="../flutter_lwp/Motor-mixin.html">Motor</a> mixin. 
 </dd>
 
         <dt id="Peripheral">
   <span class="name "><a href="../flutter_lwp/Peripheral-class.html">Peripheral</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
 </dt>
 <dd>
-   
+  Master Peripheral class. <a href="../flutter_lwp/Peripheral-class.html">[...]</a>
 </dd>
 
         <dt id="PeripheralMode">
   <span class="name "><a href="../flutter_lwp/PeripheralMode-class.html">PeripheralMode</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
 </dt>
 <dd>
-   
+  Mode container 
 </dd>
 
         <dt id="PeripheralModeRange">
   <span class="name "><a href="../flutter_lwp/PeripheralModeRange-class.html">PeripheralModeRange</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
 </dt>
 <dd>
-   
+  Range container. 
 </dd>
 
         <dt id="PortInformationMessage">
   <span class="name "><a href="../flutter_lwp/PortInformationMessage-class.html">PortInformationMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Port Information Message. 
 </dd>
 
         <dt id="PortInformationModeCombinationsMessage">
   <span class="name "><a href="../flutter_lwp/PortInformationModeCombinationsMessage-class.html">PortInformationModeCombinationsMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Get Port Combinations 
 </dd>
 
         <dt id="PortInformationModesMessage">
   <span class="name "><a href="../flutter_lwp/PortInformationModesMessage-class.html">PortInformationModesMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Get Port Modes 
 </dd>
 
         <dt id="PortInformationRequestMessage">
   <span class="name "><a href="../flutter_lwp/PortInformationRequestMessage-class.html">PortInformationRequestMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Request Port information. Responds with <a href="../flutter_lwp/PortModeInformationMessage-class.html">PortModeInformationMessage</a> 
 </dd>
 
         <dt id="PortInputFormatMessage">
   <span class="name "><a href="../flutter_lwp/PortInputFormatMessage-class.html">PortInputFormatMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Port Input format setup message 
 </dd>
 
         <dt id="PortInputFormatSetupMessage">
   <span class="name "><a href="../flutter_lwp/PortInputFormatSetupMessage-class.html">PortInputFormatSetupMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Port Input format setup message <a href="../flutter_lwp/PortInputFormatSetupMessage-class.html">[...]</a>
 </dd>
 
         <dt id="PortModeInformationMessage">
   <span class="name "><a href="../flutter_lwp/PortModeInformationMessage-class.html">PortModeInformationMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
-   
+  Information about port modes. 
 </dd>
 
         <dt id="PortModeInformationMessageMotorBias">
   <span class="name "><a href="../flutter_lwp/PortModeInformationMessageMotorBias-class.html">PortModeInformationMessageMotorBias</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -266,6 +302,7 @@ and if the hub is currently connected.
 
         <dt id="PortModeInformationMessageNAME">
   <span class="name "><a href="../flutter_lwp/PortModeInformationMessageNAME-class.html">PortModeInformationMessageNAME</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -274,6 +311,7 @@ and if the hub is currently connected.
 
         <dt id="PortModeInformationMessagePCT">
   <span class="name "><a href="../flutter_lwp/PortModeInformationMessagePCT-class.html">PortModeInformationMessagePCT</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -282,6 +320,7 @@ and if the hub is currently connected.
 
         <dt id="PortModeInformationMessageRAW">
   <span class="name "><a href="../flutter_lwp/PortModeInformationMessageRAW-class.html">PortModeInformationMessageRAW</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -290,6 +329,7 @@ and if the hub is currently connected.
 
         <dt id="PortModeInformationMessageRequest">
   <span class="name "><a href="../flutter_lwp/PortModeInformationMessageRequest-class.html">PortModeInformationMessageRequest</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -298,6 +338,7 @@ and if the hub is currently connected.
 
         <dt id="PortModeInformationMessageSI">
   <span class="name "><a href="../flutter_lwp/PortModeInformationMessageSI-class.html">PortModeInformationMessageSI</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -306,6 +347,7 @@ and if the hub is currently connected.
 
         <dt id="PortModeInformationMessageSYMBOL">
   <span class="name "><a href="../flutter_lwp/PortModeInformationMessageSYMBOL-class.html">PortModeInformationMessageSYMBOL</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -314,6 +356,7 @@ and if the hub is currently connected.
 
         <dt id="PortOutputCommandFeedback">
   <span class="name "><a href="../flutter_lwp/PortOutputCommandFeedback-class.html">PortOutputCommandFeedback</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -322,6 +365,7 @@ and if the hub is currently connected.
 
         <dt id="PortOutputCommandFeedbackPort">
   <span class="name "><a href="../flutter_lwp/PortOutputCommandFeedbackPort-class.html">PortOutputCommandFeedbackPort</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -330,6 +374,7 @@ and if the hub is currently connected.
 
         <dt id="PortOutputCommandMessage">
   <span class="name "><a href="../flutter_lwp/PortOutputCommandMessage-class.html">PortOutputCommandMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -338,6 +383,7 @@ and if the hub is currently connected.
 
         <dt id="PortValueMessage">
   <span class="name "><a href="../flutter_lwp/PortValueMessage-class.html">PortValueMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -346,22 +392,27 @@ and if the hub is currently connected.
 
         <dt id="RetryException">
   <span class="name "><a href="../flutter_lwp/RetryException-class.html">RetryException</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
 </dt>
 <dd>
-   
+  If a transaction has failed and should retry, throw <a href="../flutter_lwp/RetryException-class.html">RetryException</a> inside the transaction.
+The <a href="../flutter_lwp/Transaction-class.html">Transaction</a> class will retry <a href="../flutter_lwp/Transaction/maxTries.html">Transaction.maxTries</a> number of times. 
 </dd>
 
         <dt id="SimpleTransaction">
   <span class="name "><a href="../flutter_lwp/SimpleTransaction-class.html">SimpleTransaction</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
 </dt>
 <dd>
-   
+  Simple transaction provides an easy way to interact with the Hub using the
+request/response pattern with retries. <a href="../flutter_lwp/SimpleTransaction-class.html">[...]</a>
 </dd>
 
         <dt id="StartSpeedForDegreesMessage">
   <span class="name "><a href="../flutter_lwp/StartSpeedForDegreesMessage-class.html">StartSpeedForDegreesMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -370,6 +421,7 @@ and if the hub is currently connected.
 
         <dt id="StartSpeedMessage">
   <span class="name "><a href="../flutter_lwp/StartSpeedMessage-class.html">StartSpeedMessage</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -378,10 +430,11 @@ and if the hub is currently connected.
 
         <dt id="Transaction">
   <span class="name "><a href="../flutter_lwp/Transaction-class.html">Transaction</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
 </dt>
 <dd>
-   
+  transactions are used to facilitate communications with the hub. <a href="../flutter_lwp/Transaction-class.html">[...]</a>
 </dd>
 
       </dl>
@@ -393,10 +446,11 @@ and if the hub is currently connected.
       <dl>
         <dt id="Motor">
   <span class="name "><a href="../flutter_lwp/Motor-mixin.html">Motor</a></span> 
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
 </dt>
 <dd>
-   
+  Motor actions for Peripherals. 
 </dd>
 
       </dl>
@@ -408,6 +462,7 @@ and if the hub is currently connected.
       <dl>
         <dt id="ErrorCodeValue">
     <span class="name "><a href="../flutter_lwp/ErrorCodeValue.html">ErrorCodeValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -417,6 +472,7 @@ and if the hub is currently connected.
 
         <dt id="HubAttachedIOEventValue">
     <span class="name "><a href="../flutter_lwp/HubAttachedIOEventValue.html">HubAttachedIOEventValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -426,6 +482,7 @@ and if the hub is currently connected.
 
         <dt id="HubOperationValue">
     <span class="name "><a href="../flutter_lwp/HubOperationValue.html">HubOperationValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -435,6 +492,7 @@ and if the hub is currently connected.
 
         <dt id="HubPropertyValue">
     <span class="name "><a href="../flutter_lwp/HubPropertyValue.html">HubPropertyValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -444,6 +502,7 @@ and if the hub is currently connected.
 
         <dt id="IOTypeValue">
     <span class="name "><a href="../flutter_lwp/IOTypeValue.html">IOTypeValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -453,6 +512,7 @@ and if the hub is currently connected.
 
         <dt id="MessageTypeValue">
     <span class="name "><a href="../flutter_lwp/MessageTypeValue.html">MessageTypeValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -462,6 +522,7 @@ and if the hub is currently connected.
 
         <dt id="MotorAccelerationProfileValue">
     <span class="name "><a href="../flutter_lwp/MotorAccelerationProfileValue.html">MotorAccelerationProfileValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -471,6 +532,7 @@ and if the hub is currently connected.
 
         <dt id="MotorEndStateValue">
     <span class="name "><a href="../flutter_lwp/MotorEndStateValue.html">MotorEndStateValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -480,6 +542,7 @@ and if the hub is currently connected.
 
         <dt id="PortInformationRequestTypeValue">
     <span class="name "><a href="../flutter_lwp/PortInformationRequestTypeValue.html">PortInformationRequestTypeValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -489,6 +552,7 @@ and if the hub is currently connected.
 
         <dt id="PortModeInformationTypeValue">
     <span class="name "><a href="../flutter_lwp/PortModeInformationTypeValue.html">PortModeInformationTypeValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -498,6 +562,7 @@ and if the hub is currently connected.
 
         <dt id="PortOutputCompletionValue">
     <span class="name "><a href="../flutter_lwp/PortOutputCompletionValue.html">PortOutputCompletionValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -507,6 +572,7 @@ and if the hub is currently connected.
 
         <dt id="PortOutputFeedbackValue">
     <span class="name "><a href="../flutter_lwp/PortOutputFeedbackValue.html">PortOutputFeedbackValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -516,6 +582,7 @@ and if the hub is currently connected.
 
         <dt id="PortOutputStartupValue">
     <span class="name "><a href="../flutter_lwp/PortOutputStartupValue.html">PortOutputStartupValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -525,6 +592,7 @@ and if the hub is currently connected.
 
         <dt id="PortSubCommandValue">
     <span class="name "><a href="../flutter_lwp/PortSubCommandValue.html">PortSubCommandValue</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -544,6 +612,7 @@ and if the hub is currently connected.
       <dl>
         <dt id="ErrorCode">
   <span class="name "><a href="../flutter_lwp/ErrorCode-class.html">ErrorCode</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -552,6 +621,7 @@ and if the hub is currently connected.
 
         <dt id="HubAttachedIOEvent">
   <span class="name "><a href="../flutter_lwp/HubAttachedIOEvent-class.html">HubAttachedIOEvent</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -560,6 +630,7 @@ and if the hub is currently connected.
 
         <dt id="HubOperation">
   <span class="name "><a href="../flutter_lwp/HubOperation-class.html">HubOperation</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -568,6 +639,7 @@ and if the hub is currently connected.
 
         <dt id="HubProperty">
   <span class="name "><a href="../flutter_lwp/HubProperty-class.html">HubProperty</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -576,6 +648,7 @@ and if the hub is currently connected.
 
         <dt id="IOType">
   <span class="name "><a href="../flutter_lwp/IOType-class.html">IOType</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -584,6 +657,7 @@ and if the hub is currently connected.
 
         <dt id="MessageType">
   <span class="name "><a href="../flutter_lwp/MessageType-class.html">MessageType</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -593,6 +667,7 @@ to and from the Hub. Used by <a href="../flutter_lwp/Message-class.html">Message
 
         <dt id="MotorAccelerationProfile">
   <span class="name "><a href="../flutter_lwp/MotorAccelerationProfile-class.html">MotorAccelerationProfile</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -601,6 +676,7 @@ to and from the Hub. Used by <a href="../flutter_lwp/Message-class.html">Message
 
         <dt id="MotorEndState">
   <span class="name "><a href="../flutter_lwp/MotorEndState-class.html">MotorEndState</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -610,6 +686,7 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
 
         <dt id="PortCapabilities">
   <span class="name "><a href="../flutter_lwp/PortCapabilities-class.html">PortCapabilities</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -618,6 +695,7 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
 
         <dt id="PortInformationRequestType">
   <span class="name "><a href="../flutter_lwp/PortInformationRequestType-class.html">PortInformationRequestType</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -626,6 +704,7 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
 
         <dt id="PortModeInformationType">
   <span class="name "><a href="../flutter_lwp/PortModeInformationType-class.html">PortModeInformationType</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -634,6 +713,7 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
 
         <dt id="PortOutputCompletion">
   <span class="name "><a href="../flutter_lwp/PortOutputCompletion-class.html">PortOutputCompletion</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -642,6 +722,7 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
 
         <dt id="PortOutputFeedback">
   <span class="name "><a href="../flutter_lwp/PortOutputFeedback-class.html">PortOutputFeedback</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -650,6 +731,7 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
 
         <dt id="PortOutputStartup">
   <span class="name "><a href="../flutter_lwp/PortOutputStartup-class.html">PortOutputStartup</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -658,6 +740,7 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
 
         <dt id="PortSubCommand">
   <span class="name "><a href="../flutter_lwp/PortSubCommand-class.html">PortSubCommand</a></span> 
+    <span class="category messages cp-2 linked" title="This is part of the messages Topic."><a href="../topics/messages-topic.html">messages</a></span>
 
 </dt>
 <dd>
@@ -674,9 +757,10 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
           
   <dt id="HubList" class="">
   <span class="name"><a href="../flutter_lwp/HubList.html">HubList</a></span>
-    = <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../flutter_lwp/IHub-class.html">IHub</a></span>&gt;</span>
+    = <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../flutter_lwp/Hub-class.html">Hub</a></span>&gt;</span>
   </span>
   
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
 </dt>
 <dd>
@@ -687,11 +771,12 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
 
 
           
-  <dt id="IHubSendFunction" class="callable">
-    <span class="name"><a href="../flutter_lwp/IHubSendFunction.html">IHubSendFunction</a></span><span class="signature">
-      <span class="returntype parameter">= <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span> Function<span class="signature">(<span class="parameter" id="param-msg"><span class="type-annotation"><a href="../flutter_lwp/Message-class.html">Message</a></span> <span class="parameter-name">msg</span></span>)</span></span>
+  <dt id="IHubTransportSendFunction" class="callable">
+    <span class="name"><a href="../flutter_lwp/IHubTransportSendFunction.html">IHubTransportSendFunction</a></span><span class="signature">
+      <span class="returntype parameter">= <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span> Function<span class="signature">(<span class="parameter" id="param-msg"><span class="type-annotation"><a href="../flutter_lwp/Message-class.html">Message</a></span> <span class="parameter-name">msg</span></span>)</span></span>
     </span>
     
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 
   </dt>
   <dd>
@@ -721,8 +806,14 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
 
     <h5><span class="package-name">flutter_lwp</span> <span class="package-kind">package</span></h5>
     <ol>
+      <li class="section-title">Topics</li>
+        <li><a href="../topics/API-topic.html">API</a></li>
+        <li><a href="../topics/backend-topic.html">backend</a></li>
+        <li><a href="../topics/messages-topic.html">messages</a></li>
       <li class="section-title">Libraries</li>
       <li><a href="../flutter_lwp/flutter_lwp-library.html">flutter_lwp</a></li>
+      <li class="section-subtitle">backend</li>
+        <li class="section-subitem"><a href="../flutter_blue_transport/flutter_blue_transport-library.html">flutter_blue_transport</a></li>
 </ol>
 
   </div>
@@ -733,6 +824,7 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
   <li class="section-title"><a href="../flutter_lwp/flutter_lwp-library.html#classes">Classes</a></li>
   <li><a href="../flutter_lwp/ErrorMessage-class.html">ErrorMessage</a></li>
   <li><a href="../flutter_lwp/GotoAbsolutePositionMessage-class.html">GotoAbsolutePositionMessage</a></li>
+  <li><a href="../flutter_lwp/Hub-class.html">Hub</a></li>
   <li><a href="../flutter_lwp/HubAttachedIOBaseMessage-class.html">HubAttachedIOBaseMessage</a></li>
   <li><a href="../flutter_lwp/HubAttachedIOMessage-class.html">HubAttachedIOMessage</a></li>
   <li><a href="../flutter_lwp/HubAttachedVirtualIOMessage-class.html">HubAttachedVirtualIOMessage</a></li>
@@ -741,8 +833,8 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
   <li><a href="../flutter_lwp/HubDetachedIOMessage-class.html">HubDetachedIOMessage</a></li>
   <li><a href="../flutter_lwp/HubPropertyMessage-class.html">HubPropertyMessage</a></li>
   <li><a href="../flutter_lwp/HubState-class.html">HubState</a></li>
-  <li><a href="../flutter_lwp/IHub-class.html">IHub</a></li>
   <li><a href="../flutter_lwp/IHubScanner-class.html">IHubScanner</a></li>
+  <li><a href="../flutter_lwp/IHubTransport-class.html">IHubTransport</a></li>
   <li><a href="../flutter_lwp/Message-class.html">Message</a></li>
   <li><a href="../flutter_lwp/MotorPeripheral-class.html">MotorPeripheral</a></li>
   <li><a href="../flutter_lwp/Peripheral-class.html">Peripheral</a></li>
@@ -813,7 +905,7 @@ used by for example <a href="../flutter_lwp/StartSpeedForDegreesMessage-class.ht
 
   <li class="section-title"><a href="../flutter_lwp/flutter_lwp-library.html#typedefs">Typedefs</a></li>
   <li><a href="../flutter_lwp/HubList.html">HubList</a></li>
-  <li><a href="../flutter_lwp/IHubSendFunction.html">IHubSendFunction</a></li>
+  <li><a href="../flutter_lwp/IHubTransportSendFunction.html">IHubTransportSendFunction</a></li>
 
 </ol>
 

@@ -1,5 +1,8 @@
 part of flutter_lwp;
 
+/// Port Information Message.
+///
+/// {@category messages}
 class PortInformationMessage extends Message {
   final int portId;
   final PortInformationRequestType informationType;
@@ -50,6 +53,9 @@ class PortInformationMessage extends Message {
   }
 }
 
+/// Get Port Modes
+///
+/// {@category messages}
 class PortInformationModesMessage extends PortInformationMessage {
   final List<PortCapabilities> capabilities;
   final int modeCount;
@@ -94,6 +100,8 @@ class PortInformationModesMessage extends PortInformationMessage {
   }
 }
 
+/// Get Port Combinations
+/// {@category messages}
 class PortInformationModeCombinationsMessage extends PortInformationMessage {
   final List<int> combinations;
 

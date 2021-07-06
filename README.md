@@ -1,5 +1,7 @@
 # flutter_lwp
 
+![Flutter LWP](https://altera2015.github.io/flutter_lwp/lwp.png)
+
 Dart implementation of LWP protocol
 
 # Supports

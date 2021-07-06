@@ -1,5 +1,8 @@
 part of flutter_lwp;
 
+/// Request Port information. Responds with [PortModeInformationMessage]
+///
+/// {@category messages}
 class PortInformationRequestMessage extends Message {
   int portId;
   PortInformationRequestType informationType;

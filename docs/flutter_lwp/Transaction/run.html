@@ -53,7 +53,7 @@
       
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
-<span class="name ">run</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="run-param-send"><span class="type-annotation"><a href="../../flutter_lwp/IHubSendFunction.html">IHubSendFunction</a></span> <span class="parameter-name">send</span>, </span></li>
+<span class="name ">run</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="run-param-send"><span class="type-annotation"><a href="../../flutter_lwp/IHubTransportSendFunction.html">IHubTransportSendFunction</a></span> <span class="parameter-name">send</span>, </span></li>
 <li><span class="parameter" id="run-param-stream"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../flutter_lwp/Message-class.html">Message</a></span>&gt;</span></span> <span class="parameter-name">stream</span></span></li>
 </ol>)
 
@@ -66,7 +66,7 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;void&gt; run(IHubSendFunction send, Stream&lt;Message&gt; stream) async {
+  <pre class="language-dart"><code class="language-dart">Future&lt;void&gt; run(IHubTransportSendFunction send, Stream&lt;Message&gt; stream) async {
   for (int i = 0; i &lt; maxTries; i++) {
     try {
       _completer.complete(await callback(send, stream));

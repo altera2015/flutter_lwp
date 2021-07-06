@@ -1,6 +1,7 @@
 part of flutter_lwp;
 
 /// Parent class for PortOutputCommand's.
+/// {@category messages}
 class PortOutputCommandMessage extends Message {
   final int portId;
   final PortOutputStartup startup;
@@ -35,6 +36,7 @@ class PortOutputCommandMessage extends Message {
 ///
 /// details:
 ///https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-sub-command-startspeed-speed-maxpower-useprofile-0x07
+/// {@category messages}
 class StartSpeedMessage extends PortOutputCommandMessage {
   StartSpeedMessage(int portId, PortOutputStartup startup, PortOutputCompletion completion, int speed, int maxPower, MotorAccelerationProfile useProfile)
       : super(portId, startup, completion, PortSubCommand.StartSpeed, [speed, maxPower, useProfile.value]);
@@ -44,6 +46,7 @@ class StartSpeedMessage extends PortOutputCommandMessage {
 ///
 /// details:
 /// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-sub-command-startspeedfordegrees-degrees-speed-maxpower-endstate-useprofile-0x0b
+/// {@category messages}
 class StartSpeedForDegreesMessage extends PortOutputCommandMessage {
   StartSpeedForDegreesMessage(int portId, PortOutputStartup startup, PortOutputCompletion completion, int degrees, int speed, int maxPower,
       MotorEndState endState, MotorAccelerationProfile useProfile)
@@ -55,6 +58,7 @@ class StartSpeedForDegreesMessage extends PortOutputCommandMessage {
 ///
 /// details:
 /// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-sub-command-gotoabsoluteposition-abspos-speed-maxpower-endstate-useprofile-0x0d
+/// {@category messages}
 class GotoAbsolutePositionMessage extends PortOutputCommandMessage {
   GotoAbsolutePositionMessage(int portId, PortOutputStartup startup, PortOutputCompletion completion, int absolutePosition, int speed, int maxPower,
       MotorEndState endState, MotorAccelerationProfile useProfile)

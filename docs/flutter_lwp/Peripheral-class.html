@@ -47,9 +47,15 @@
 <h1><span class="kind-class">Peripheral</span> class 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
  
+    <span class="category api cp-0 linked" title="This is part of the API Topic."><a href="../topics/API-topic.html">API</a></span>
 </h1></div>
 
     
+<section class="desc markdown">
+  <p>Master Peripheral class.</p>
+<p>Mixins are used to extend the capabilities of each peripheral to
+expose it's functionality.</p>
+</section>
 
 
     <section>
@@ -71,16 +77,19 @@
 
       <dl class="constructor-summary-list">
         <dt id="Peripheral" class="callable">
-          <span class="name"><a href="../flutter_lwp/Peripheral/Peripheral.html">Peripheral</a></span><span class="signature">(<span class="parameter" id="-param-hub"><span class="type-annotation"><a href="../flutter_lwp/IHub-class.html">IHub</a></span> <span class="parameter-name">hub</span>, </span><span class="parameter" id="-param-attachedIO"><span class="type-annotation"><a href="../flutter_lwp/HubAttachedIOMessage-class.html">HubAttachedIOMessage</a></span> <span class="parameter-name">attachedIO</span></span>)</span>
+          <span class="name"><a href="../flutter_lwp/Peripheral/Peripheral.html">Peripheral</a></span><span class="signature">(<span class="parameter" id="-param-hub"><span class="type-annotation"><a href="../flutter_lwp/Hub-class.html">Hub</a></span> <span class="parameter-name">hub</span>, </span><span class="parameter" id="-param-attachedIO"><span class="type-annotation"><a href="../flutter_lwp/HubAttachedIOMessage-class.html">HubAttachedIOMessage</a></span> <span class="parameter-name">attachedIO</span></span>)</span>
         </dt>
         <dd>
-           
+          constructor for peripheral. Typically you'll want to use the
+factory constructor to ensure the correct mixins are
+loaded for each <a href="../flutter_lwp/IOType-class.html">IOType</a>. 
         </dd>
         <dt id="Peripheral.factory" class="callable">
-          <span class="name"><a href="../flutter_lwp/Peripheral/Peripheral.factory.html">Peripheral.factory</a></span><span class="signature">(<span class="parameter" id="factory-param-hub"><span class="type-annotation"><a href="../flutter_lwp/IHub-class.html">IHub</a></span> <span class="parameter-name">hub</span>, </span><span class="parameter" id="factory-param-attachedIO"><span class="type-annotation"><a href="../flutter_lwp/HubAttachedIOMessage-class.html">HubAttachedIOMessage</a></span> <span class="parameter-name">attachedIO</span></span>)</span>
+          <span class="name"><a href="../flutter_lwp/Peripheral/Peripheral.factory.html">Peripheral.factory</a></span><span class="signature">(<span class="parameter" id="factory-param-hub"><span class="type-annotation"><a href="../flutter_lwp/Hub-class.html">Hub</a></span> <span class="parameter-name">hub</span>, </span><span class="parameter" id="factory-param-attachedIO"><span class="type-annotation"><a href="../flutter_lwp/HubAttachedIOMessage-class.html">HubAttachedIOMessage</a></span> <span class="parameter-name">attachedIO</span></span>)</span>
         </dt>
         <dd>
-           
+          factory method to create peripherals depending
+on the <a href="../flutter_lwp/IOType-class.html">IOType</a>. 
           <div class="constructor-modifier features">factory</div>
         </dd>
       </dl>
@@ -114,7 +123,7 @@
 
         <dt id="hub" class="property">
   <span class="name"><a href="../flutter_lwp/Peripheral/hub.html">hub</a></span>
-  <span class="signature">&#8594; <a href="../flutter_lwp/IHub-class.html">IHub</a></span> 
+  <span class="signature">&#8594; <a href="../flutter_lwp/Hub-class.html">Hub</a></span> 
 
 </dt>
 <dd>
@@ -129,7 +138,7 @@
 
 </dt>
 <dd>
-   
+  Returns the portId this peripheral is attached to. <a href="../flutter_lwp/Peripheral/portId.html">[...]</a>
   <div class="features">read-only</div>
 
 </dd>
@@ -159,7 +168,7 @@
 
 </dt>
 <dd>
-   
+  call this to dispose of the peripheral when no longer needed. 
   
 
 </dd>
@@ -172,7 +181,8 @@
 
 </dt>
 <dd>
-   
+  Interrogate the port for all its characteristics.
+including input and output modes. 
   
 
 </dd>
@@ -198,7 +208,7 @@
 
 </dt>
 <dd>
-   
+  Sets a peripheral mode into notification mode. <a href="../flutter_lwp/Peripheral/setInputMode.html">[...]</a>
   
 
 </dd>
@@ -211,7 +221,9 @@
 
 </dt>
 <dd>
-   
+  Provide a JSON suitable object for long term storage of the
+peripheral characteristics. Can be used to shorted startup time as a
+cache. 
   
 
 </dd>
@@ -275,6 +287,7 @@
   <li class="section-title"><a href="../flutter_lwp/flutter_lwp-library.html#classes">Classes</a></li>
   <li><a href="../flutter_lwp/ErrorMessage-class.html">ErrorMessage</a></li>
   <li><a href="../flutter_lwp/GotoAbsolutePositionMessage-class.html">GotoAbsolutePositionMessage</a></li>
+  <li><a href="../flutter_lwp/Hub-class.html">Hub</a></li>
   <li><a href="../flutter_lwp/HubAttachedIOBaseMessage-class.html">HubAttachedIOBaseMessage</a></li>
   <li><a href="../flutter_lwp/HubAttachedIOMessage-class.html">HubAttachedIOMessage</a></li>
   <li><a href="../flutter_lwp/HubAttachedVirtualIOMessage-class.html">HubAttachedVirtualIOMessage</a></li>
@@ -283,8 +296,8 @@
   <li><a href="../flutter_lwp/HubDetachedIOMessage-class.html">HubDetachedIOMessage</a></li>
   <li><a href="../flutter_lwp/HubPropertyMessage-class.html">HubPropertyMessage</a></li>
   <li><a href="../flutter_lwp/HubState-class.html">HubState</a></li>
-  <li><a href="../flutter_lwp/IHub-class.html">IHub</a></li>
   <li><a href="../flutter_lwp/IHubScanner-class.html">IHubScanner</a></li>
+  <li><a href="../flutter_lwp/IHubTransport-class.html">IHubTransport</a></li>
   <li><a href="../flutter_lwp/Message-class.html">Message</a></li>
   <li><a href="../flutter_lwp/MotorPeripheral-class.html">MotorPeripheral</a></li>
   <li><a href="../flutter_lwp/Peripheral-class.html">Peripheral</a></li>
@@ -355,7 +368,7 @@
 
   <li class="section-title"><a href="../flutter_lwp/flutter_lwp-library.html#typedefs">Typedefs</a></li>
   <li><a href="../flutter_lwp/HubList.html">HubList</a></li>
-  <li><a href="../flutter_lwp/IHubSendFunction.html">IHubSendFunction</a></li>
+  <li><a href="../flutter_lwp/IHubTransportSendFunction.html">IHubTransportSendFunction</a></li>
 
 </ol>
 

@@ -6,7 +6,7 @@
 /// Getting started
 /// ---------------
 ///
-/// The entry point for the library is the [IHubScanner] and [IHub].
+/// The entry point for the library is the [IHubScanner] and [Hub].
 ///
 library flutter_lwp;
 
@@ -21,6 +21,8 @@ part 'lwp_error_message.dart';
 part 'lwp_hub.dart';
 part "lwp_hub_attached_io.dart";
 part 'lwp_hub_message.dart';
+part 'lwp_ihub_scanner.dart';
+part 'lwp_ihub_transport.dart';
 part 'lwp_message.dart';
 part 'lwp_output_command.dart';
 part 'lwp_peripheral.dart';

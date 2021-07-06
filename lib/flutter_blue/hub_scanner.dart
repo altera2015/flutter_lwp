@@ -1,6 +1,9 @@
 part of flutter_blue_transport;
 
-class FlutterBluHubManufacturerData {
+/// The flutter_blue advertising packet.
+///
+/// {@category backend}
+class FlutterBlueHubManufacturerData {
   static const int LegoManufacturerId = 0x0397;
 
   final bool buttonState;
@@ -11,7 +14,7 @@ class FlutterBluHubManufacturerData {
   final int status;
   final int option;
 
-  FlutterBluHubManufacturerData(
+  FlutterBlueHubManufacturerData(
       {required this.buttonState,
       required this.systemType,
       required this.capabilities,
@@ -19,7 +22,7 @@ class FlutterBluHubManufacturerData {
       required this.status,
       required this.option});
 
-  static FlutterBluHubManufacturerData? fromList(List<int>? data) {
+  static FlutterBlueHubManufacturerData? fromList(List<int>? data) {
     if (data == null) {
       return null;
     }
@@ -31,7 +34,7 @@ class FlutterBluHubManufacturerData {
       return null;
     }
 
-    return FlutterBluHubManufacturerData(
+    return FlutterBlueHubManufacturerData(
         buttonState: data[0] != 0, systemType: data[1], capabilities: data[2], lastNetworkId: data[3], status: data[4], option: data[5]);
   }
 
@@ -41,6 +44,9 @@ class FlutterBluHubManufacturerData {
   }
 }
 
+/// The flutter_blue IHubScanner implementation
+///
+/// {@category backend}
 class HubScanner extends IHubScanner {
   static FlutterBlue _flutterBlue = FlutterBlue.instance;
 
@@ -79,17 +85,17 @@ class HubScanner extends IHubScanner {
           });
         }
 
-        if (!result.advertisementData.manufacturerData.containsKey(FlutterBluHubManufacturerData.LegoManufacturerId)) {
+        if (!result.advertisementData.manufacturerData.containsKey(FlutterBlueHubManufacturerData.LegoManufacturerId)) {
           Helper.dprint("Didn't find expected manufacturer data.");
           continue;
         }
 
-        FlutterBluHubManufacturerData? hubManufacturerData =
-            FlutterBluHubManufacturerData.fromList(result.advertisementData.manufacturerData[FlutterBluHubManufacturerData.LegoManufacturerId]);
+        FlutterBlueHubManufacturerData? hubManufacturerData =
+            FlutterBlueHubManufacturerData.fromList(result.advertisementData.manufacturerData[FlutterBlueHubManufacturerData.LegoManufacturerId]);
 
         if (hubManufacturerData != null) {
           Helper.dprint("Found a hub!!!!");
-          Hub hub = new Hub(result.device, hubManufacturerData);
+          Hub hub = new Hub(HubTransport(result.device, hubManufacturerData));
           _hubs[result.device.id.id] = hub;
           _controller.add(this.list);
         }

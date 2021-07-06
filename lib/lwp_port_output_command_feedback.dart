@@ -1,11 +1,13 @@
 part of flutter_lwp;
 
+/// {@category messages}
 class PortOutputCommandFeedbackPort {
   final int portId;
   final List<PortOutputFeedback> feedback;
   PortOutputCommandFeedbackPort(this.portId, this.feedback);
 }
 
+/// {@category messages}
 class PortOutputCommandFeedback extends Message {
   List<PortOutputCommandFeedbackPort> ports;
 
