@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: MyHomePage(title: 'flutter_lwp example'));
-    // home: BuggyView(hub: null));
+    //home: BuggyView(hub: null));
   }
 }
 

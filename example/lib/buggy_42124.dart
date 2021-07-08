@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_lwp/flutter_lwp.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -99,6 +100,10 @@ class _BuggyViewState extends State<BuggyView> {
           max: 100,
           minDelta: 10,
           onChanged: (int speed) async {
+            if (speed < -95 || speed > 95) {
+              HapticFeedback.mediumImpact();
+            }
+
             if (widget.hub != null) {
               await (widget.hub?.peripheral(0) as MotorPeripheral).startSpeed(speed, speed == 0 ? 0 : 100, MotorAccelerationProfile.None);
             }
@@ -111,6 +116,10 @@ class _BuggyViewState extends State<BuggyView> {
           max: widget.calibration.left,
           minDelta: 1,
           onChanged: (int value) {
+            if (value == widget.calibration.right || value == widget.calibration.left) {
+              HapticFeedback.mediumImpact();
+            }
+
             if (widget.hub != null) {
               (widget.hub?.peripheral(1) as MotorPeripheral).gotoAbsolutePosition(value, 10, 70, MotorEndState.Hold, MotorAccelerationProfile.None);
             }
