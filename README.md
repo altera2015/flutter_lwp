@@ -17,11 +17,20 @@ Currently tested against Hub 2.0 (https://brickset.com/parts/6142536/hub-no-2)
 
 # Getting Started
 
-Have a look at the example directory or the [API topic](https://altera2015.github.io/flutter_lwp/topics/API-topic.html)
+Have a look at the [example directory](https://github.com/altera2015/flutter_lwp/tree/master/example) 
+or the [API topic](https://altera2015.github.io/flutter_lwp/topics/API-topic.html).
+
+The example code allows control of Lego Buggy (42124), and is IMHO better than the
+OEM control, which was very jittery. ( remember to hit calibrate at least once with the wheels
+off the ground.)
 
 # API Docs
 
 https://altera2015.github.io/flutter_lwp/
+
+# Source code
+
+https://github.com/altera2015/flutter_lwp
 
 # Disclaimer
 
