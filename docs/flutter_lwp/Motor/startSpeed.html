@@ -72,9 +72,27 @@ acceleration profile specified in useProfile.</p>
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;bool&gt; startSpeed(int speed, int maxPower, MotorAccelerationProfile useProfile) async {
+  if (_startSpeedThrottle.inProgress) {
+    _startSpeedThrottle.assign(speed, maxPower, useProfile);
+    return false;
+  }
+  _startSpeedThrottle.inProgress = true;
+
+  print(&quot;speed $speed&quot;);
+  &#47;&#47; await Future.delayed(Duration(seconds: 1));
+  &#47;&#47; Message? msg;
+  &#47;&#47;
+  PortOutputCommandFeedback? msg;
   SimpleTransaction&lt;PortOutputCommandFeedback&gt; tx = SimpleTransaction&lt;PortOutputCommandFeedback&gt;(
       msgToSend: StartSpeedMessage(portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, speed, maxPower, useProfile));
-  PortOutputCommandFeedback? msg = await tx.queue(hub);
+  msg = await tx.queue(hub);
+
+  _startSpeedThrottle.inProgress = false;
+  if (_startSpeedThrottle.requested) {
+    startSpeed(_startSpeedThrottle.speed, _startSpeedThrottle.maxPower, _startSpeedThrottle.profile);
+    _startSpeedThrottle.requested = false;
+  }
+
   if (msg == null) {
     return false;
   }
@@ -125,6 +143,7 @@ acceleration profile specified in useProfile.</p>
     <li class="inherited"><a href="../../flutter_lwp/Peripheral/setInputMode.html">setInputMode</a></li>
     <li><a href="../../flutter_lwp/Motor/startSpeed.html">startSpeed</a></li>
     <li><a href="../../flutter_lwp/Motor/startSpeedForDegrees.html">startSpeedForDegrees</a></li>
+    <li><a href="../../flutter_lwp/Motor/startSpeedForTime.html">startSpeedForTime</a></li>
     <li class="inherited"><a href="../../flutter_lwp/Peripheral/toJsonObject.html">toJsonObject</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
 

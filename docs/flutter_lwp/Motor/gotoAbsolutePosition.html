@@ -74,10 +74,30 @@ acceleration profile specified in useProfile.</p>
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;bool&gt; gotoAbsolutePosition(int absolutePosition, int speed, int maxPower, MotorEndState endState, MotorAccelerationProfile useProfile) async {
+  if (_gotoAbsolutePositionThrottle.inProgress) {
+    _gotoAbsolutePositionThrottle.assign(absolutePosition, speed, maxPower, endState, useProfile);
+    return false;
+  }
+  _gotoAbsolutePositionThrottle.inProgress = true;
+  &#47;&#47;
+  &#47;&#47; await Future.delayed(Duration(seconds: 1));
+  &#47;&#47; Message? msg;
+  &#47;&#47;
   SimpleTransaction&lt;PortOutputCommandFeedback&gt; tx = SimpleTransaction&lt;PortOutputCommandFeedback&gt;(
       msgToSend: GotoAbsolutePositionMessage(
           portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, absolutePosition, speed, maxPower, endState, useProfile));
   PortOutputCommandFeedback? msg = await tx.queue(hub);
+
+  print(&quot;abs = $absolutePosition&quot;);
+
+  _gotoAbsolutePositionThrottle.inProgress = false;
+
+  if (_gotoAbsolutePositionThrottle.requested) {
+    gotoAbsolutePosition(_gotoAbsolutePositionThrottle.absolutePosition, _gotoAbsolutePositionThrottle.speed, _gotoAbsolutePositionThrottle.maxPower,
+        _gotoAbsolutePositionThrottle.endState, _gotoAbsolutePositionThrottle.useProfile);
+    _gotoAbsolutePositionThrottle.requested = false;
+  }
+
   if (msg == null) {
     return false;
   }
@@ -128,6 +148,7 @@ acceleration profile specified in useProfile.</p>
     <li class="inherited"><a href="../../flutter_lwp/Peripheral/setInputMode.html">setInputMode</a></li>
     <li><a href="../../flutter_lwp/Motor/startSpeed.html">startSpeed</a></li>
     <li><a href="../../flutter_lwp/Motor/startSpeedForDegrees.html">startSpeedForDegrees</a></li>
+    <li><a href="../../flutter_lwp/Motor/startSpeedForTime.html">startSpeedForTime</a></li>
     <li class="inherited"><a href="../../flutter_lwp/Peripheral/toJsonObject.html">toJsonObject</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
 

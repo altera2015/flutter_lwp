@@ -73,7 +73,7 @@
     throw Exception(&quot;Not connected&quot;);
   }
   List&lt;int&gt; data = msg.encode();
-  &#47;&#47; Helper.dumpData(data);
+  Helper.dumpData(data);
   await _characteristic!.write(data);
   return true;
 }</code></pre>

@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  another_xlider: ^1.0.0
   flutter_lwp:
     path: ../
 

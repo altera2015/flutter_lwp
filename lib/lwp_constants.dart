@@ -625,6 +625,9 @@ enum PortSubCommand {
   /// Move motor at specified speed to a certain rotation in degrees.
   GotoAbsolutePosition,
 
+  /// Runt the motor for a specific set of milliseconds.
+  StartSpeedForTime,
+
   /// Write commands directly to peripheral.
   WriteDirectModeData
 }
@@ -636,6 +639,7 @@ extension PortSubCommandValue on PortSubCommand {
     PortSubCommand.StartSpeedForDegrees: 0x0b,
     PortSubCommand.GotoAbsolutePosition: 0x0d,
     PortSubCommand.WriteDirectModeData: 0x51,
+    PortSubCommand.StartSpeedForTime: 0x09,
   };
 
   int get value {

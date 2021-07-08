@@ -31,51 +31,6 @@ class PeripheralMode {
   }
 }
 
-/// Motor actions for Peripherals.
-/// {@category API}
-mixin Motor on Peripheral {
-  /// Starts motor running at specified speed using at most maxPower using the
-  /// acceleration profile specified in useProfile.
-  Future<bool> startSpeed(int speed, int maxPower, MotorAccelerationProfile useProfile) async {
-    SimpleTransaction<PortOutputCommandFeedback> tx = SimpleTransaction<PortOutputCommandFeedback>(
-        msgToSend: StartSpeedMessage(portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, speed, maxPower, useProfile));
-    PortOutputCommandFeedback? msg = await tx.queue(hub);
-    if (msg == null) {
-      return false;
-    }
-    Helper.dprint("startSpeed got $msg");
-    return true;
-  }
-
-  /// Runs motor for set number of degrees at specified speed using at most maxPower using the
-  /// acceleration profile specified in useProfile.
-  Future<bool> startSpeedForDegrees(int degrees, int speed, int maxPower, MotorEndState endState, MotorAccelerationProfile useProfile) async {
-    SimpleTransaction<PortOutputCommandFeedback> tx = SimpleTransaction<PortOutputCommandFeedback>(
-        msgToSend: StartSpeedForDegreesMessage(
-            portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, degrees, speed, maxPower, endState, useProfile));
-    PortOutputCommandFeedback? msg = await tx.queue(hub);
-    if (msg == null) {
-      return false;
-    }
-    Helper.dprint("startSpeedForDegrees got $msg");
-    return true;
-  }
-
-  /// Runs motor until a certain rotation position is achieved at specified speed using at most maxPower using the
-  /// acceleration profile specified in useProfile.
-  Future<bool> gotoAbsolutePosition(int absolutePosition, int speed, int maxPower, MotorEndState endState, MotorAccelerationProfile useProfile) async {
-    SimpleTransaction<PortOutputCommandFeedback> tx = SimpleTransaction<PortOutputCommandFeedback>(
-        msgToSend: GotoAbsolutePositionMessage(
-            portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, absolutePosition, speed, maxPower, endState, useProfile));
-    PortOutputCommandFeedback? msg = await tx.queue(hub);
-    if (msg == null) {
-      return false;
-    }
-    Helper.dprint("gotoAbsolutePosition got $msg");
-    return true;
-  }
-}
-
 /// Master Peripheral class.
 ///
 /// Mixins are used to extend the capabilities of each peripheral to

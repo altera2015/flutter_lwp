@@ -65,3 +65,15 @@ class GotoAbsolutePositionMessage extends PortOutputCommandMessage {
       : super(portId, startup, completion, PortSubCommand.GotoAbsolutePosition,
             [...Helper.encodeInt32LE(absolutePosition), speed, maxPower, endState.value, useProfile.value]);
 }
+
+/// Move motor for a certain number of milliseconds.
+///
+/// details:
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#output-sub-command-startspeedfordegrees-degrees-speed-maxpower-endstate-useprofile-0x0b
+/// {@category messages}
+class StartSpeedForTimeMessage extends PortOutputCommandMessage {
+  StartSpeedForTimeMessage(int portId, PortOutputStartup startup, PortOutputCompletion completion, int timeMs, int speed, int maxPower, MotorEndState endState,
+      MotorAccelerationProfile useProfile)
+      : super(portId, startup, completion, PortSubCommand.StartSpeedForTime,
+            [...Helper.encodeInt16LE(timeMs), speed, maxPower, endState.value, useProfile.value]);
+}

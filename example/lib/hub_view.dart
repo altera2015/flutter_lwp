@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_lwp/flutter_lwp.dart';
 
+import 'buggy_42124.dart';
+
 class HubView extends StatefulWidget {
   final Hub hub;
 
@@ -61,6 +63,25 @@ class _HubViewState extends State<HubView> {
 
               return Column(
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => BuggyView(hub: widget.hub)),
+                            );
+                          },
+                          child: Text("Use Buggy View")),
+                      ElevatedButton(
+                          onPressed: () {
+                            // try to calibrate the front wheels.
+                            // BuggyView.calibrate(widget.hub);
+                          },
+                          child: Text("Calibrate (TODO)"))
+                    ],
+                  ),
                   ...motorWidgets,
                   Expanded(
                     child: ListView.builder(

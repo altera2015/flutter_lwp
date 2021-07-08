@@ -24,6 +24,7 @@ part 'lwp_hub_message.dart';
 part 'lwp_ihub_scanner.dart';
 part 'lwp_ihub_transport.dart';
 part 'lwp_message.dart';
+part 'lwp_motor_peripheral.dart';
 part 'lwp_output_command.dart';
 part 'lwp_peripheral.dart';
 part 'lwp_port_format_setup.dart';
@@ -40,12 +41,45 @@ part 'lwp_transaction.dart';
 class Helper {
   static bool debug = false;
 
-  static int decodeInt16LE(List<int> data, int offset) {
-    int v = 0;
-    for (int i = 1; i >= 0; i--) {
-      v = (v << 8) | data[offset + i];
+  // static int decodeIntLE(List<int> data, int offset, int bytes) {
+  //   int v = 0;
+  //   for (int i = (bytes - 1); i >= 0; i--) {
+  //     v = (v << 8) | data[offset + i];
+  //   }
+  //   int allOnes = (1<<(8*bytes)) -1;
+  //   int msb = 1 << ((bytes * 8) - 1);
+  //   if (msb & v == msb) {
+  //     // NEGATIVE!
+  //     return ((~v) & allOnes) + 1;
+  //   }
+  //   return v;
+  // }
+
+  // static List<int> encodeIntLE(int v, int bytes) {
+  //
+  // }
+
+  static List<int> encodeInt16LE(int d) {
+    List<int> res = [];
+    ByteData bd = ByteData(2);
+    bd.setInt16(0, d, Endian.little);
+    for (int i = 0; i < bd.lengthInBytes; i++) {
+      res.add(bd.getUint8(i));
     }
-    return v;
+    return res;
+  }
+
+  static int decodeInt16LE(List<int> data, int offset) {
+    // int v = 0;
+    // for (int i = 1; i >= 0; i--) {
+    //   v = (v << 8) | data[offset + i];
+    // }
+    // return v;
+    ByteData bd = ByteData(2);
+    for (int i = 0; i < bd.lengthInBytes; i++) {
+      bd.setInt8(i, data[offset + i]);
+    }
+    return bd.getInt16(0, Endian.little);
   }
 
   // Most significant byte first
@@ -63,15 +97,29 @@ class Helper {
 
   // least significant byte first.
   static int decodeInt32LE(List<int> data, int offset) {
-    int v = 0;
-    for (int i = 3; i >= 0; i--) {
-      v = (v << 8) | data[offset + i];
+    // int v = 0;
+    // for (int i = 3; i >= 0; i--) {
+    //   v = (v << 8) | data[offset + i];
+    // }
+    // return v;
+
+    ByteData bd = ByteData(4);
+    for (int i = 0; i < bd.lengthInBytes; i++) {
+      bd.setInt8(i, data[offset + i]);
     }
-    return v;
+    return bd.getInt32(0, Endian.little);
   }
 
   static List<int> encodeInt32LE(int d) {
-    return [d & 0xff, (d >> 8) & 0xff, (d >> 16) & 0xff, (d >> 24) & 0xff];
+    // return [d & 0xff, (d >> 8) & 0xff, (d >> 16) & 0xff, (d >> 24) & 0xff];
+    List<int> res = [];
+    ByteData bd = ByteData(4);
+    bd.setInt32(0, d, Endian.little);
+    for (int i = 0; i < bd.lengthInBytes; i++) {
+      res.add(bd.getUint8(i));
+    }
+
+    return res;
   }
 
   static List<int> encodeFloat32(double v) {
