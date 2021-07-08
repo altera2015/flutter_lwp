@@ -27,7 +27,7 @@ class FlutterBlueHubManufacturerData {
       return null;
     }
 
-    Helper.dumpData(data);
+    Helper.dprint("Advertisement data ${Helper.toHex(data)}");
 
     if (data.length < 6) {
       print("Incorrect length, needs as least 6 bytes");
@@ -71,13 +71,11 @@ class HubScanner extends IHubScanner {
 
         if (Helper.debug) {
           result.advertisementData.serviceData.forEach((key, value) {
-            Helper.dprint("service data $key");
-            Helper.dumpData(value);
+            Helper.dprint("service data $key : ${Helper.toHex(value)}");
           });
 
           result.advertisementData.manufacturerData.forEach((key, value) {
-            Helper.dprint("manufacturer data $key");
-            Helper.dumpData(value);
+            Helper.dprint("manufacturer data $key : ${Helper.toHex(value)}");
           });
 
           result.advertisementData.serviceUuids.forEach((element) {

@@ -28,4 +28,4 @@ https://altera2015.github.io/flutter_lwp/
 This product is not written nor endorsed by Lego. It was built using the publicly available LWP
 documentation available here:
 
-https://lego.github.io/lego-ble-wireless-protocol-docs/index.html
+[Lego LWP documention](https://lego.github.io/lego-ble-wireless-protocol-docs/index.html)

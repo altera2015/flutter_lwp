@@ -76,13 +76,11 @@
 
       if (Helper.debug) {
         result.advertisementData.serviceData.forEach((key, value) {
-          Helper.dprint(&quot;service data $key&quot;);
-          Helper.dumpData(value);
+          Helper.dprint(&quot;service data $key : ${Helper.toHex(value)}&quot;);
         });
 
         result.advertisementData.manufacturerData.forEach((key, value) {
-          Helper.dprint(&quot;manufacturer data $key&quot;);
-          Helper.dumpData(value);
+          Helper.dprint(&quot;manufacturer data $key : ${Helper.toHex(value)}&quot;);
         });
 
         result.advertisementData.serviceUuids.forEach((element) {

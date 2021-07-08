@@ -51,6 +51,26 @@ class _StartSpeedForDegreesThrottle {
   }
 }
 
+class _StartSpeedForTimeThrottle {
+  bool inProgress = false;
+  bool requested = false;
+  int time = 0;
+  int speed = 0;
+  int maxPower = 0;
+  bool immediate = false;
+  MotorEndState endState = MotorEndState.Float;
+  MotorAccelerationProfile useProfile = MotorAccelerationProfile.None;
+  void assign(int time, int speed, int maxPower, MotorEndState endState, MotorAccelerationProfile useProfile, bool immediate) {
+    requested = true;
+    this.time = time;
+    this.speed = speed;
+    this.maxPower = maxPower;
+    this.endState = endState;
+    this.useProfile = useProfile;
+    this.immediate = immediate;
+  }
+}
+
 /// Motor actions for Peripherals.
 /// {@category API}
 mixin Motor on Peripheral {
@@ -71,7 +91,7 @@ mixin Motor on Peripheral {
     //
     PortOutputCommandFeedback? msg;
     SimpleTransaction<PortOutputCommandFeedback> tx = SimpleTransaction<PortOutputCommandFeedback>(
-        msgToSend: StartSpeedMessage(portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, speed, maxPower, useProfile));
+        msgToSend: StartSpeedMessage(portId, PortOutputStartup.Immediate, PortOutputCompletion.Feedback, speed, maxPower, useProfile));
     msg = await tx.queue(hub);
 
     _startSpeedThrottle.inProgress = false;
@@ -128,18 +148,14 @@ mixin Motor on Peripheral {
       return false;
     }
     _gotoAbsolutePositionThrottle.inProgress = true;
-    //
-    // await Future.delayed(Duration(seconds: 1));
-    // Message? msg;
-    //
+
     SimpleTransaction<PortOutputCommandFeedback> tx = SimpleTransaction<PortOutputCommandFeedback>(
         msgToSend: GotoAbsolutePositionMessage(
-            portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, absolutePosition, speed, maxPower, endState, useProfile));
+            portId, PortOutputStartup.Immediate, PortOutputCompletion.Feedback, absolutePosition, speed, maxPower, endState, useProfile));
     PortOutputCommandFeedback? msg = await tx.queue(hub);
 
-    print("abs = $absolutePosition");
-
     _gotoAbsolutePositionThrottle.inProgress = false;
+    Helper.dprint("requested pos: $absolutePosition gotoAbsolutePosition got $msg");
 
     if (_gotoAbsolutePositionThrottle.requested) {
       gotoAbsolutePosition(_gotoAbsolutePositionThrottle.absolutePosition, _gotoAbsolutePositionThrottle.speed, _gotoAbsolutePositionThrottle.maxPower,
@@ -150,36 +166,38 @@ mixin Motor on Peripheral {
     if (msg == null) {
       return false;
     }
-    Helper.dprint("gotoAbsolutePosition got $msg");
+
     return true;
   }
 
-  /// Runs motor for set number of degrees at specified speed using at most maxPower using the
+  _StartSpeedForTimeThrottle _startSpeedForTimeThrottle = _StartSpeedForTimeThrottle();
+
+  /// Runs motor for a specified time at specified speed using at most maxPower using the
   /// acceleration profile specified in useProfile.
-  Future<bool> startSpeedForTime(int timeMS, int speed, int maxPower, MotorEndState endState, MotorAccelerationProfile useProfile) async {
-    // if (_startSpeedForDegreesThrottle.inProgress) {
-    //   _startSpeedForDegreesThrottle.assign(degrees, speed, maxPower, endState, useProfile);
-    //   return false;
-    // }
-    // _startSpeedForDegreesThrottle.inProgress = true;
+  Future<bool> startSpeedForTime(int timeMS, int speed, int maxPower, MotorEndState endState, MotorAccelerationProfile useProfile, bool immediate) async {
+    if (_startSpeedForTimeThrottle.inProgress) {
+      _startSpeedForTimeThrottle.assign(timeMS, speed, maxPower, endState, useProfile, immediate);
+      return false;
+    }
+    _startSpeedForTimeThrottle.inProgress = true;
 
     SimpleTransaction<PortOutputCommandFeedback> tx = SimpleTransaction<PortOutputCommandFeedback>(
-        msgToSend:
-            StartSpeedForTimeMessage(portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, timeMS, speed, maxPower, endState, useProfile));
+        msgToSend: StartSpeedForTimeMessage(portId, immediate ? PortOutputStartup.Immediate : PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback,
+            timeMS, speed, maxPower, endState, useProfile));
     PortOutputCommandFeedback? msg = await tx.queue(hub);
 
-    // _startSpeedForDegreesThrottle.inProgress = false;
-    //
-    // if (_startSpeedForDegreesThrottle.requested) {
-    //   startSpeedForDegrees(_startSpeedForDegreesThrottle.degrees, _startSpeedForDegreesThrottle.speed, _startSpeedForDegreesThrottle.maxPower,
-    //       _startSpeedForDegreesThrottle.endState, _startSpeedForDegreesThrottle.useProfile);
-    //   _startSpeedForDegreesThrottle.requested = false;
-    // }
+    _startSpeedForTimeThrottle.inProgress = false;
+
+    if (_startSpeedForTimeThrottle.requested) {
+      startSpeedForTime(_startSpeedForTimeThrottle.time, _startSpeedForTimeThrottle.speed, _startSpeedForTimeThrottle.maxPower,
+          _startSpeedForTimeThrottle.endState, _startSpeedForTimeThrottle.useProfile, _startSpeedForTimeThrottle.immediate);
+      _startSpeedForTimeThrottle.requested = false;
+    }
 
     if (msg == null) {
       return false;
     }
-    Helper.dprint("startSpeedForDegrees got $msg");
+    Helper.dprint("startSpeedForTime got $msg");
     return true;
   }
 }

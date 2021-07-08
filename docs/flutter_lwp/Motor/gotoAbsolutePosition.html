@@ -79,18 +79,14 @@ acceleration profile specified in useProfile.</p>
     return false;
   }
   _gotoAbsolutePositionThrottle.inProgress = true;
-  &#47;&#47;
-  &#47;&#47; await Future.delayed(Duration(seconds: 1));
-  &#47;&#47; Message? msg;
-  &#47;&#47;
+
   SimpleTransaction&lt;PortOutputCommandFeedback&gt; tx = SimpleTransaction&lt;PortOutputCommandFeedback&gt;(
       msgToSend: GotoAbsolutePositionMessage(
-          portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, absolutePosition, speed, maxPower, endState, useProfile));
+          portId, PortOutputStartup.Immediate, PortOutputCompletion.Feedback, absolutePosition, speed, maxPower, endState, useProfile));
   PortOutputCommandFeedback? msg = await tx.queue(hub);
 
-  print(&quot;abs = $absolutePosition&quot;);
-
   _gotoAbsolutePositionThrottle.inProgress = false;
+  Helper.dprint(&quot;requested pos: $absolutePosition gotoAbsolutePosition got $msg&quot;);
 
   if (_gotoAbsolutePositionThrottle.requested) {
     gotoAbsolutePosition(_gotoAbsolutePositionThrottle.absolutePosition, _gotoAbsolutePositionThrottle.speed, _gotoAbsolutePositionThrottle.maxPower,
@@ -101,7 +97,7 @@ acceleration profile specified in useProfile.</p>
   if (msg == null) {
     return false;
   }
-  Helper.dprint(&quot;gotoAbsolutePosition got $msg&quot;);
+
   return true;
 }</code></pre>
 </section>

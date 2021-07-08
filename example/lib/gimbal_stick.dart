@@ -131,9 +131,9 @@ class _GimbalStickState extends State<GimbalStick> with SingleTickerProviderStat
 
   int _onMove(PointerEvent event) {
     if (widget.axis == Axis.vertical) {
-      _percent = min(max(event.localPosition.dy / _size.height, 0.0), 1.0);
+      _percent = min(max(event.localPosition.dy / (_size.height), 0.0), 1.0);
     } else {
-      _percent = min(max(event.localPosition.dx / _size.width, 0.0), 1.0);
+      _percent = min(max(event.localPosition.dx / (_size.width), 0.0), 1.0);
     }
     setState(() {});
     return (_percent * (widget.max - widget.min) + widget.min).round();

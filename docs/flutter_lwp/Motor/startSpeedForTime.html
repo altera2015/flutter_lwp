@@ -57,7 +57,8 @@
 <li><span class="parameter" id="startSpeedForTime-param-speed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">speed</span>, </span></li>
 <li><span class="parameter" id="startSpeedForTime-param-maxPower"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">maxPower</span>, </span></li>
 <li><span class="parameter" id="startSpeedForTime-param-endState"><span class="type-annotation"><a href="../../flutter_lwp/MotorEndState-class.html">MotorEndState</a></span> <span class="parameter-name">endState</span>, </span></li>
-<li><span class="parameter" id="startSpeedForTime-param-useProfile"><span class="type-annotation"><a href="../../flutter_lwp/MotorAccelerationProfile-class.html">MotorAccelerationProfile</a></span> <span class="parameter-name">useProfile</span></span></li>
+<li><span class="parameter" id="startSpeedForTime-param-useProfile"><span class="type-annotation"><a href="../../flutter_lwp/MotorAccelerationProfile-class.html">MotorAccelerationProfile</a></span> <span class="parameter-name">useProfile</span>, </span></li>
+<li><span class="parameter" id="startSpeedForTime-param-immediate"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">immediate</span></span></li>
 </ol>)
 
       
@@ -65,7 +66,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Runs motor for set number of degrees at specified speed using at most maxPower using the
+  <p>Runs motor for a specified time at specified speed using at most maxPower using the
 acceleration profile specified in useProfile.</p>
 </section>
 
@@ -73,30 +74,30 @@ acceleration profile specified in useProfile.</p>
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;bool&gt; startSpeedForTime(int timeMS, int speed, int maxPower, MotorEndState endState, MotorAccelerationProfile useProfile) async {
-  &#47;&#47; if (_startSpeedForDegreesThrottle.inProgress) {
-  &#47;&#47;   _startSpeedForDegreesThrottle.assign(degrees, speed, maxPower, endState, useProfile);
-  &#47;&#47;   return false;
-  &#47;&#47; }
-  &#47;&#47; _startSpeedForDegreesThrottle.inProgress = true;
+  <pre class="language-dart"><code class="language-dart">Future&lt;bool&gt; startSpeedForTime(int timeMS, int speed, int maxPower, MotorEndState endState, MotorAccelerationProfile useProfile, bool immediate) async {
+  if (_startSpeedForTimeThrottle.inProgress) {
+    _startSpeedForTimeThrottle.assign(timeMS, speed, maxPower, endState, useProfile, immediate);
+    return false;
+  }
+  _startSpeedForTimeThrottle.inProgress = true;
 
   SimpleTransaction&lt;PortOutputCommandFeedback&gt; tx = SimpleTransaction&lt;PortOutputCommandFeedback&gt;(
-      msgToSend:
-          StartSpeedForTimeMessage(portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, timeMS, speed, maxPower, endState, useProfile));
+      msgToSend: StartSpeedForTimeMessage(portId, immediate ? PortOutputStartup.Immediate : PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback,
+          timeMS, speed, maxPower, endState, useProfile));
   PortOutputCommandFeedback? msg = await tx.queue(hub);
 
-  &#47;&#47; _startSpeedForDegreesThrottle.inProgress = false;
-  &#47;&#47;
-  &#47;&#47; if (_startSpeedForDegreesThrottle.requested) {
-  &#47;&#47;   startSpeedForDegrees(_startSpeedForDegreesThrottle.degrees, _startSpeedForDegreesThrottle.speed, _startSpeedForDegreesThrottle.maxPower,
-  &#47;&#47;       _startSpeedForDegreesThrottle.endState, _startSpeedForDegreesThrottle.useProfile);
-  &#47;&#47;   _startSpeedForDegreesThrottle.requested = false;
-  &#47;&#47; }
+  _startSpeedForTimeThrottle.inProgress = false;
+
+  if (_startSpeedForTimeThrottle.requested) {
+    startSpeedForTime(_startSpeedForTimeThrottle.time, _startSpeedForTimeThrottle.speed, _startSpeedForTimeThrottle.maxPower,
+        _startSpeedForTimeThrottle.endState, _startSpeedForTimeThrottle.useProfile, _startSpeedForTimeThrottle.immediate);
+    _startSpeedForTimeThrottle.requested = false;
+  }
 
   if (msg == null) {
     return false;
   }
-  Helper.dprint(&quot;startSpeedForDegrees got $msg&quot;);
+  Helper.dprint(&quot;startSpeedForTime got $msg&quot;);
   return true;
 }</code></pre>
 </section>

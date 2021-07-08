@@ -68,18 +68,25 @@ class _HubViewState extends State<HubView> {
                     children: [
                       ElevatedButton(
                           onPressed: () async {
+                            BuggyCalibration calibration = await BuggyCalibration.loadFromSharedPreferences();
                             await Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => BuggyView(hub: widget.hub)),
+                              MaterialPageRoute(
+                                  builder: (context) => BuggyView(
+                                        hub: widget.hub,
+                                        calibration: calibration,
+                                      )),
                             );
                           },
                           child: Text("Use Buggy View")),
                       ElevatedButton(
-                          onPressed: () {
-                            // try to calibrate the front wheels.
-                            // BuggyView.calibrate(widget.hub);
+                          onPressed: () async {
+                            BuggyCalibration? calibration = await BuggyView.calibrate(widget.hub);
+                            if (calibration != null) {
+                              await calibration.saveToSharedPreferences();
+                            }
                           },
-                          child: Text("Calibrate (TODO)"))
+                          child: Text("Calibrate Steering"))
                     ],
                   ),
                   ...motorWidgets,

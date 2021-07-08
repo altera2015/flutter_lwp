@@ -64,14 +64,13 @@ class HubTransport extends IHubTransport {
   void _process(List<int> data) {
     try {
       if (data.length > 0) {
-        Helper.dumpData(data);
+        Helper.dprint("Received : ${Helper.toHex(data)}");
         Message msg = Message.factory(data);
         print(msg.toString());
         _controller.add(msg);
       }
     } catch (e) {
-      print("Could not decode ${e.toString()}");
-      Helper.dumpData(data);
+      print("Could not decode ${e.toString()} ${Helper.toHex(data)}");
     }
   }
 
@@ -94,7 +93,7 @@ class HubTransport extends IHubTransport {
       throw Exception("Not connected");
     }
     List<int> data = msg.encode();
-    Helper.dumpData(data);
+    Helper.dprint("Sending: ${Helper.toHex(data)}");
     await _characteristic!.write(data);
     return true;
   }

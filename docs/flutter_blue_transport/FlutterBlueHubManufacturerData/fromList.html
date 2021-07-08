@@ -70,7 +70,7 @@
     return null;
   }
 
-  Helper.dumpData(data);
+  Helper.dprint(&quot;Advertisement data ${Helper.toHex(data)}&quot;);
 
   if (data.length &lt; 6) {
     print(&quot;Incorrect length, needs as least 6 bytes&quot;);

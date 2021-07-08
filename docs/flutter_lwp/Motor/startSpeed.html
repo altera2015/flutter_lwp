@@ -84,7 +84,7 @@ acceleration profile specified in useProfile.</p>
   &#47;&#47;
   PortOutputCommandFeedback? msg;
   SimpleTransaction&lt;PortOutputCommandFeedback&gt; tx = SimpleTransaction&lt;PortOutputCommandFeedback&gt;(
-      msgToSend: StartSpeedMessage(portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, speed, maxPower, useProfile));
+      msgToSend: StartSpeedMessage(portId, PortOutputStartup.Immediate, PortOutputCompletion.Feedback, speed, maxPower, useProfile));
   msg = await tx.queue(hub);
 
   _startSpeedThrottle.inProgress = false;

@@ -25,7 +25,6 @@ class PortModeInformationMessage extends Message {
 
     switch (informationType) {
       case PortModeInformationType.NAME:
-        Helper.dumpData(data.sublist(offset + 3));
         return PortModeInformationMessageNAME(portId, mode, informationType, Helper.decodeStr(data, offset + 3));
       case PortModeInformationType.SYMBOL:
         return PortModeInformationMessageSYMBOL(portId, mode, informationType, Helper.decodeStr(data, offset + 3));
