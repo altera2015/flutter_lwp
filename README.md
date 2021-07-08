@@ -9,7 +9,7 @@ Dart implementation of LWP protocol
 Currently this library uses flutter_blue as the Bluetooth back-end. This means the library runs on
 Android, iOS and MacOS.
 
-The backend can be trivially replace/augmented when and if new backends become available.
+The backend can be trivially replaced/augmented when new backends become available.
 
 # Lego Hub support
 
