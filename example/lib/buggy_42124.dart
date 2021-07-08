@@ -118,17 +118,46 @@ class _BuggyViewState extends State<BuggyView> {
         )),
       ];
 
+      late Widget controlContainer;
       if (orientation == Orientation.landscape) {
-        return Padding(
+        controlContainer = Padding(
           padding: const EdgeInsets.all(60.0),
           child: Row(children: [...controls]),
         );
       } else {
-        return Padding(
+        controlContainer = Padding(
           padding: const EdgeInsets.all(60.0),
           child: Column(children: [...controls]),
         );
       }
+
+      return Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.grey,
+            Colors.black87,
+          ],
+        )),
+        child: Stack(
+          children: [
+            Container(
+              //color: Colors.yellow,
+              padding: EdgeInsets.all(25),
+              alignment: Alignment.topLeft,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(Icons.arrow_back),
+              ),
+            ),
+            controlContainer,
+          ],
+        ),
+      );
     });
   }
 }

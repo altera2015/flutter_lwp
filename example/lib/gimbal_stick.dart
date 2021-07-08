@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/physics.dart';
 
 class GimbalStick extends StatefulWidget {
@@ -59,13 +60,19 @@ class GimbalStick extends StatefulWidget {
             width: 100.0,
             height: 100.0,
             decoration: new BoxDecoration(
-              color: Colors.yellow,
+              gradient: RadialGradient(colors: [Colors.blue, Color.fromARGB(255, 10, 0, 150)]),
               shape: BoxShape.circle,
             )),
         background: Container(
             alignment: Alignment.center,
             child: Container(
-              color: Colors.grey,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid),
+                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  gradient: LinearGradient(begin: Alignment.bottomCenter, end: Alignment.topCenter, colors: [
+                    Colors.grey,
+                    Colors.black87,
+                  ])),
               width: 110,
             )),
         axis: axis,
@@ -83,13 +90,19 @@ class GimbalStick extends StatefulWidget {
             width: 100.0,
             height: 100.0,
             decoration: new BoxDecoration(
-              color: Colors.yellow,
+              gradient: RadialGradient(colors: [Colors.blue, Color.fromARGB(255, 10, 0, 150)]),
               shape: BoxShape.circle,
             )),
         background: Container(
             alignment: Alignment.center,
             child: Container(
-              color: Colors.grey,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  border: Border.all(color: Colors.black, width: 1.0, style: BorderStyle.solid),
+                  gradient: LinearGradient(begin: Alignment.bottomCenter, end: Alignment.topCenter, colors: [
+                    Colors.grey,
+                    Colors.black87,
+                  ])),
               height: 110,
             )),
         axis: axis,
