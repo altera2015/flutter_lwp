@@ -25,17 +25,19 @@ class PortModeInformationMessage extends Message {
 
     switch (informationType) {
       case PortModeInformationType.NAME:
-        return PortModeInformationMessageNAME(portId, mode, informationType, Helper.decodeStr(data, offset + 3));
+        return PortModeInformationMessageNAME(portId, mode, Helper.decodeStr(data, offset + 3));
       case PortModeInformationType.SYMBOL:
-        return PortModeInformationMessageSYMBOL(portId, mode, informationType, Helper.decodeStr(data, offset + 3));
+        return PortModeInformationMessageSYMBOL(portId, mode, Helper.decodeStr(data, offset + 3));
       case PortModeInformationType.RAW:
-        return PortModeInformationMessageRAW(portId, mode, informationType, Helper.decodeFloat32(data, offset + 3), Helper.decodeFloat32(data, offset + 7));
+        return PortModeInformationMessageRAW(portId, mode, Helper.decodeFloat32(data, offset + 3), Helper.decodeFloat32(data, offset + 7));
       case PortModeInformationType.PCT:
-        return PortModeInformationMessagePCT(portId, mode, informationType, Helper.decodeFloat32(data, offset + 3), Helper.decodeFloat32(data, offset + 7));
+        return PortModeInformationMessagePCT(portId, mode, Helper.decodeFloat32(data, offset + 3), Helper.decodeFloat32(data, offset + 7));
       case PortModeInformationType.SI:
-        return PortModeInformationMessageSI(portId, mode, informationType, Helper.decodeFloat32(data, offset + 3), Helper.decodeFloat32(data, offset + 7));
+        return PortModeInformationMessageSI(portId, mode, Helper.decodeFloat32(data, offset + 3), Helper.decodeFloat32(data, offset + 7));
       case PortModeInformationType.MOTOR_BIAS:
-        return PortModeInformationMessageMotorBias(portId, mode, informationType, data[offset + 3]);
+        return PortModeInformationMessageMotorBias(portId, mode, data[offset + 3]);
+      case PortModeInformationType.VALUE_FORMAT:
+        return PortModeInformationMessageValueFormat(portId, mode, ValueFormat.decode(data, offset + 3));
       default:
         throw Exception("Unsupported information type $informationType");
     }
@@ -46,7 +48,7 @@ class PortModeInformationMessage extends Message {
 class PortModeInformationMessageNAME extends PortModeInformationMessage {
   final String name;
 
-  PortModeInformationMessageNAME(int portId, int mode, PortModeInformationType informationType, this.name) : super(portId, mode, informationType);
+  PortModeInformationMessageNAME(int portId, int mode, this.name) : super(portId, mode, PortModeInformationType.NAME);
 
   @override
   List<int> _encode() {
@@ -59,21 +61,27 @@ class PortModeInformationMessageNAME extends PortModeInformationMessage {
 }
 
 /// {@category messages}
-class PortModeInformationMessageSYMBOL extends PortModeInformationMessageNAME {
-  PortModeInformationMessageSYMBOL(int portId, int mode, PortModeInformationType informationType, String name) : super(portId, mode, informationType, name);
+class PortModeInformationMessageSYMBOL extends PortModeInformationMessage {
+  final String symbol;
+
+  PortModeInformationMessageSYMBOL(int portId, int mode, this.symbol) : super(portId, mode, PortModeInformationType.SYMBOL);
+
+  @override
+  List<int> _encode() {
+    return super._encode()..addAll(Helper.encodeStr(symbol));
+  }
 
   String toString() {
-    return "PortModeInformationMessageSYMBOL Message: port=$portId, informationType=$informationType, mode=$mode, symbol=$name";
+    return "PortModeInformationMessageSYMBOL Message: port=$portId, informationType=$informationType, mode=$mode, symbol=$symbol";
   }
 }
 
 /// {@category messages}
-class PortModeInformationMessageRAW extends PortModeInformationMessage {
+class PortModeInformationMessageRAWBase extends PortModeInformationMessage {
   final double minimum;
   final double maximum;
 
-  PortModeInformationMessageRAW(int portId, int mode, PortModeInformationType informationType, this.minimum, this.maximum)
-      : super(portId, mode, informationType);
+  PortModeInformationMessageRAWBase(int portId, int mode, PortModeInformationType pi, this.minimum, this.maximum) : super(portId, mode, pi);
 
   @override
   List<int> _encode() {
@@ -81,14 +89,17 @@ class PortModeInformationMessageRAW extends PortModeInformationMessage {
   }
 
   String toString() {
-    return "PortModeInformationMessageRAW Message: port=$portId, informationType=$informationType, mode=$mode, minimum=$minimum, maximum=$maximum";
+    return "${informationType.toString()} Message: port=$portId, informationType=$informationType, mode=$mode, minimum=$minimum, maximum=$maximum";
   }
 }
 
+class PortModeInformationMessageRAW extends PortModeInformationMessageRAWBase {
+  PortModeInformationMessageRAW(int portId, int mode, double minimum, double maximum) : super(portId, mode, PortModeInformationType.RAW, minimum, maximum);
+}
+
 /// {@category messages}
-class PortModeInformationMessagePCT extends PortModeInformationMessageRAW {
-  PortModeInformationMessagePCT(int portId, int mode, PortModeInformationType informationType, double minimum, double maximum)
-      : super(portId, mode, informationType, minimum, maximum);
+class PortModeInformationMessagePCT extends PortModeInformationMessageRAWBase {
+  PortModeInformationMessagePCT(int portId, int mode, double minimum, double maximum) : super(portId, mode, PortModeInformationType.PCT, minimum, maximum);
 
   String toString() {
     return "PortModeInformationMessagePCT Message: port=$portId, informationType=$informationType, mode=$mode, minimum=$minimum, maximum=$maximum";
@@ -96,9 +107,8 @@ class PortModeInformationMessagePCT extends PortModeInformationMessageRAW {
 }
 
 /// {@category messages}
-class PortModeInformationMessageSI extends PortModeInformationMessageRAW {
-  PortModeInformationMessageSI(int portId, int mode, PortModeInformationType informationType, double minimum, double maximum)
-      : super(portId, mode, informationType, minimum, maximum);
+class PortModeInformationMessageSI extends PortModeInformationMessageRAWBase {
+  PortModeInformationMessageSI(int portId, int mode, double minimum, double maximum) : super(portId, mode, PortModeInformationType.SI, minimum, maximum);
 
   String toString() {
     return "PortModeInformationMessageSI Message: port=$portId, informationType=$informationType, mode=$mode, minimum=$minimum, maximum=$maximum";
@@ -109,7 +119,7 @@ class PortModeInformationMessageSI extends PortModeInformationMessageRAW {
 class PortModeInformationMessageMotorBias extends PortModeInformationMessage {
   final int bias;
 
-  PortModeInformationMessageMotorBias(int portId, int mode, PortModeInformationType informationType, this.bias) : super(portId, mode, informationType);
+  PortModeInformationMessageMotorBias(int portId, int mode, this.bias) : super(portId, mode, PortModeInformationType.MOTOR_BIAS);
 
   @override
   List<int> _encode() {
@@ -118,5 +128,57 @@ class PortModeInformationMessageMotorBias extends PortModeInformationMessage {
 
   String toString() {
     return "PortModeInformationMessageMotorBias Message: port=$portId, informationType=$informationType, mode=$mode, bias=$bias";
+  }
+}
+
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#value-format
+/// {@category messages}
+enum ValueFormatDataType { EightBit, SixteenBit, ThirtyTwoBit, Float }
+
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#value-format
+/// {@category messages}
+class ValueFormat {
+  final int datasetCount;
+  final ValueFormatDataType dataType;
+  final int totalFigures;
+  final int decimals;
+
+  ValueFormat(this.datasetCount, this.dataType, this.totalFigures, this.decimals);
+
+  factory ValueFormat.decode(List<int> data, offset) {
+    int datasetCount = data[offset];
+    ValueFormatDataType dataType = ValueFormatDataType.values[data[offset + 1] & 3];
+    int totalFigures = data[offset + 2];
+    int decimals = data[offset + 3];
+    return ValueFormat(datasetCount, dataType, totalFigures, decimals);
+  }
+
+  List<int> encode() {
+    return [datasetCount, dataType.index, totalFigures, decimals];
+  }
+
+  Map<String, dynamic> toJSON() {
+    return {"datasetCount": datasetCount, "dataType": dataType.toString(), "totalFigures": totalFigures, "decimals": decimals};
+  }
+
+  String toString() {
+    return "ValueFormat: count=$datasetCount, dataType=${dataType.toString()}, figures=$totalFigures decimals=$decimals";
+  }
+}
+
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#value-format
+/// {@category messages}
+class PortModeInformationMessageValueFormat extends PortModeInformationMessage {
+  final ValueFormat valueFormat;
+
+  PortModeInformationMessageValueFormat(int portId, int mode, this.valueFormat) : super(portId, mode, PortModeInformationType.VALUE_FORMAT);
+
+  @override
+  List<int> _encode() {
+    return super._encode()..addAll([...valueFormat.encode()]);
+  }
+
+  String toString() {
+    return "PortModeInformationMessageValueFormat Message: port=$portId, informationType=$informationType, mode=$mode, valueFormat=($valueFormat)";
   }
 }

@@ -1,1 +1,38 @@
-{"type":"IOType.HubStatusLight","hardwareRevision":268435456,"softwareRevision":268435456,"portId":50,"capabilities":["PortCapabilities.Output"],"inputModes":{},"outputModes":{"0":{"name":"COL O","symbol":"","rawRange":{"min":0.0,"max":10.0}},"1":{"name":"RGB O","symbol":"","rawRange":{"min":0.0,"max":255.0}}}}
+{
+  "type": "IOType.HubStatusLight",
+  "hardwareRevision": "0.0.0 (16)",
+  "softwareRevision": "0.0.0 (16)",
+  "portId": 50,
+  "capabilities": ["PortCapabilities.Output"],
+  "inputModes": {},
+  "outputModes": {
+    "0": {
+      "name": "COL O",
+      "symbol": "",
+      "rawRange": {
+        "min": 0.0,
+        "max": 10.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.EightBit",
+        "totalFigures": 1,
+        "decimals": 0
+      }
+    },
+    "1": {
+      "name": "RGB O",
+      "symbol": "",
+      "rawRange": {
+        "min": 0.0,
+        "max": 255.0
+      },
+      "valueFormat": {
+        "datasetCount": 3,
+        "dataType": "ValueFormatDataType.EightBit",
+        "totalFigures": 3,
+        "decimals": 0
+      }
+    }
+  }
+}

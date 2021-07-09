@@ -93,7 +93,7 @@ class HubTransport extends IHubTransport {
       throw Exception("Not connected");
     }
     List<int> data = msg.encode();
-    Helper.dprint("Sending: ${Helper.toHex(data)}");
+    print("Sending: ${Helper.toHex(data)}");
     await _characteristic!.write(data);
     return true;
   }

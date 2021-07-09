@@ -1,5 +1,8 @@
 part of flutter_lwp;
 
+// this throttling needs to be
+// recoded into a more general solution.
+
 class _StartSpeedThrottle {
   bool inProgress = false;
   bool requested = false;

@@ -77,3 +77,13 @@ class StartSpeedForTimeMessage extends PortOutputCommandMessage {
       : super(portId, startup, completion, PortSubCommand.StartSpeedForTime,
             [...Helper.encodeInt16LE(timeMs), speed, maxPower, endState.value, useProfile.value]);
 }
+
+/// Write Direct Mode data to a port.
+///
+/// details:
+/// https://lego.github.io/lego-ble-wireless-protocol-docs/index.html#encoding-of-writedirectmodedata-0x81-0x51
+/// {@category messages}
+class WriteDirectModeDataMessage extends PortOutputCommandMessage {
+  WriteDirectModeDataMessage(int portId, PortOutputStartup startup, PortOutputCompletion completion, int mode, List<int> payload)
+      : super(portId, startup, completion, PortSubCommand.WriteDirectModeData, [mode, ...payload]);
+}

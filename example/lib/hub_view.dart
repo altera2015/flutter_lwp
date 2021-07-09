@@ -95,14 +95,17 @@ class _HubViewState extends State<HubView> {
                         itemCount: hubState.peripherals.length,
                         itemBuilder: (BuildContext context, int index) {
                           Peripheral p = hubState.peripherals[hubState.peripherals.keys.elementAt(index)]!;
-                          // if (p.attachedIO.ioType == IOType.LargeMotor) {
-                          //   return MotorTile(peripheral: p as MotorPeripheral);
-                          // }
+
                           return ListTile(
-                            title: Text(p.attachedIO.ioType.toString()),
+                            title: Text("${p.attachedIO.ioType.toString()} ${p.portId.toRadixString(16)}"),
                             onTap: () async {
                               await p.interrogate();
                               print(jsonEncode(p.toJsonObject()));
+                            },
+                            onLongPress: () async {
+                              if (p is HubStatusLightPeripheral) {
+                                p.setColor(0, 1);
+                              }
                             },
                           );
                         }),

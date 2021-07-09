@@ -12,12 +12,14 @@ class PeripheralModeRange {
 class PeripheralMode {
   final int modeId;
   final bool inputMode;
+
   String name = "";
   String symbol = "";
+  ValueFormat valueFormat = ValueFormat(0, ValueFormatDataType.EightBit, 0, 0);
 
   PeripheralModeRange rawRange = PeripheralModeRange();
   String toString() {
-    return "$modeId, $name $symbol rawRange=(${rawRange.min}-${rawRange.max})";
+    return "$modeId, $name $symbol rawRange=(${rawRange.min}-${rawRange.max}, valueFormat=$valueFormat)";
   }
 
   PeripheralMode(this.modeId, this.inputMode);
@@ -26,7 +28,8 @@ class PeripheralMode {
     return {
       "name": name,
       "symbol": symbol,
-      "rawRange": {"min": rawRange.min, "max": rawRange.max}
+      "rawRange": {"min": rawRange.min, "max": rawRange.max},
+      "valueFormat": valueFormat.toJSON()
     };
   }
 }
@@ -49,6 +52,8 @@ class Peripheral {
   /// on the [IOType].
   factory Peripheral.factory(Hub hub, HubAttachedIOMessage attachedIO) {
     switch (attachedIO.ioType) {
+      case IOType.HubStatusLight:
+        return HubStatusLightPeripheral(hub, attachedIO);
       case IOType.Motor:
       case IOType.LargeMotor:
       case IOType.XLargeMotor:
@@ -102,7 +107,7 @@ class Peripheral {
         return null;
       }
       Helper.dprint("interrogate got $msg");
-      m.symbol = msg.name;
+      m.symbol = msg.symbol;
     }
 
     {
@@ -115,6 +120,17 @@ class Peripheral {
       print("interrogate got $msg");
       m.rawRange.min = msg.minimum;
       m.rawRange.max = msg.maximum;
+    }
+
+    {
+      SimpleTransaction<PortModeInformationMessageValueFormat> tx = SimpleTransaction<PortModeInformationMessageValueFormat>(
+          msgToSend: PortModeInformationMessageRequest(portId, modeId, PortModeInformationType.VALUE_FORMAT));
+      PortModeInformationMessageValueFormat? msg = await tx.queue(hub);
+      if (msg == null) {
+        return null;
+      }
+      Helper.dprint("interrogate got $msg");
+      m.valueFormat = msg.valueFormat;
     }
 
     return m;
@@ -164,8 +180,8 @@ class Peripheral {
     Map<String, Object> map = {};
     if (_modeInfo != null) {
       map["type"] = attachedIO.ioType.toString();
-      map["hardwareRevision"] = attachedIO.hardwareRevision;
-      map["softwareRevision"] = attachedIO.softwareRevision;
+      map["hardwareRevision"] = attachedIO.hardwareRevision.toString();
+      map["softwareRevision"] = attachedIO.softwareRevision.toString();
       map["portId"] = _modeInfo!.portId;
       map["capabilities"] = _modeInfo!.capabilities.map((e) => e.toString()).toList();
       Map<String, Object> inputModeMap = {};
@@ -199,8 +215,42 @@ class Peripheral {
   }
 }
 
+/// LED actions for Peripherals.
+/// {@category API}
+mixin Led on Peripheral {
+  /// Sets the LED color.
+  Future<bool> setColor(int mode, int color) async {
+    SimpleTransaction<PortOutputCommandFeedback> tx = SimpleTransaction<PortOutputCommandFeedback>(
+        msgToSend: WriteDirectModeDataMessage(portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, mode, [color]));
+    PortOutputCommandFeedback? msg = await tx.queue(hub);
+    if (msg == null) {
+      return false;
+    }
+    return true;
+  }
+
+  /// Sets the LED RGB color.
+  ///
+  /// Note this doesn't (currently?) work for hub 2.0
+  Future<bool> setRGBColor(int mode, int r, int g, int b) async {
+    SimpleTransaction<PortOutputCommandFeedback> tx = SimpleTransaction<PortOutputCommandFeedback>(
+        msgToSend: WriteDirectModeDataMessage(portId, PortOutputStartup.BufferIfNeeded, PortOutputCompletion.Feedback, mode, [r, g, b]));
+    PortOutputCommandFeedback? msg = await tx.queue(hub);
+    if (msg == null) {
+      return false;
+    }
+    return true;
+  }
+}
+
 /// MotorPeripheral class using [Motor] mixin.
 /// {@category API}
 class MotorPeripheral extends Peripheral with Motor {
   MotorPeripheral(Hub hub, HubAttachedIOMessage attachedIO) : super(hub, attachedIO);
+}
+
+/// HubPeripheral class using [Led] mixin.
+/// {@category API}
+class HubStatusLightPeripheral extends Peripheral with Led {
+  HubStatusLightPeripheral(Hub hub, HubAttachedIOMessage attachedIO) : super(hub, attachedIO);
 }

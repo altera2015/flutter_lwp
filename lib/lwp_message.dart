@@ -72,3 +72,11 @@ class EmptyMessage extends Message {
     return "Empty";
   }
 }
+
+/// FreeForm message can be used to build a message on the fly.
+class FreeFormMessage extends Message {
+  List<int> data;
+  FreeFormMessage(MessageType type, this.data) : super(messageType: type);
+
+  List<int> _encode() => data;
+}
