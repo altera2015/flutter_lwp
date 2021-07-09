@@ -1,0 +1,1 @@
+{"type":"IOType.HubIMUGyro","hardwareRevision":1,"softwareRevision":1,"portId":98,"capabilities":["PortCapabilities.Input"],"inputModes":{"0":{"name":"ROT","symbol":"DPS","rawRange":{"min":-28571.419921875,"max":28571.419921875}}},"outputModes":{}}

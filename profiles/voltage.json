@@ -1,0 +1,1 @@
+{"type":"IOType.Voltage","hardwareRevision":268435456,"softwareRevision":268435456,"portId":60,"capabilities":["PortCapabilities.Input"],"inputModes":{"0":{"name":"VLT L","symbol":"mV","rawRange":{"min":0.0,"max":4095.0}},"1":{"name":"VLT S","symbol":"mV","rawRange":{"min":0.0,"max":4095.0}}},"outputModes":{}}

@@ -1,0 +1,1 @@
+{"type":"IOType.HubIMUTemperature","hardwareRevision":268435456,"softwareRevision":268435456,"portId":61,"capabilities":["PortCapabilities.Input"],"inputModes":{"0":{"name":"TEMP","symbol":"DEG","rawRange":{"min":-900.0,"max":900.0}}},"outputModes":{}}

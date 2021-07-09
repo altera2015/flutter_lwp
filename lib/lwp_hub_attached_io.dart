@@ -1,5 +1,41 @@
 part of flutter_lwp;
 
+class PeripheralVersion {
+  final int major;
+  final int minor;
+  final int bugFix;
+  final int build;
+  PeripheralVersion(this.major, this.minor, this.bugFix, this.build);
+
+  factory PeripheralVersion.fromInt32(int v) {
+    int major = (v >> 28) & 0x07;
+    int minor = (v >> 24) & 0x0f;
+    int bugFix = (v >> 16) & 0xff;
+
+    int bcdTop = (bugFix >> 4) & 0xf;
+    int bcdBottom = bugFix & 0xf;
+    bugFix = bcdTop * 10 + bcdBottom;
+
+    int build = v & 0xffff;
+    return PeripheralVersion(major, minor, bugFix, build);
+  }
+
+  factory PeripheralVersion.decode(List<int> data, int offset) {
+    int v = Helper.decodeInt32BE(data, offset);
+    return PeripheralVersion.fromInt32(v);
+  }
+
+  List<int> encode() {
+    int bugFixBcd = (bugFix / 10).round() << 4 | (bugFix % 10);
+    int v = (major << 28) | (minor << 24) | (bugFixBcd << 16) | build;
+    return Helper.encodeInt32BE(v);
+  }
+
+  String toString() {
+    return '$major.$minor.$bugFix ($build)';
+  }
+}
+
 /// Base class for [HubAttachedIOMessage], [HubDetachedIOMessage] and [HubAttachedVirtualIOMessage]
 ///
 /// {@category messages}
@@ -21,6 +57,7 @@ class HubAttachedIOBaseMessage extends Message {
       throw Exception("Not enough data");
     }
 
+    //print(Helper.toHex(data));
     int portId = data[offset];
     HubAttachedIOEvent event = HubAttachedIOEventValue.fromInt(data[offset + 1]);
 
@@ -29,8 +66,8 @@ class HubAttachedIOBaseMessage extends Message {
         if (data.length - offset < 12) {
           throw Exception("Not enough data (Attached)");
         }
-        int hardwareRevision = Helper.decodeInt32LE(data, offset + 4);
-        int softwareRevision = Helper.decodeInt32LE(data, offset + 8);
+        PeripheralVersion hardwareRevision = PeripheralVersion.decode(data, offset + 4);
+        PeripheralVersion softwareRevision = PeripheralVersion.decode(data, offset + 8);
         return HubAttachedIOMessage(portId, IOTypeValue.fromInt(Helper.decodeInt16LE(data, offset + 2)), hardwareRevision, softwareRevision);
 
       case HubAttachedIOEvent.Detached:
@@ -42,7 +79,7 @@ class HubAttachedIOBaseMessage extends Message {
         }
         int portA = data[offset + 4];
         int portB = data[offset + 5];
-        return HubAttachedIOMessage(portId, IOTypeValue.fromInt(Helper.decodeInt16LE(data, offset + 2)), portA, portB);
+        return HubAttachedVirtualIOMessage(portId, IOTypeValue.fromInt(Helper.decodeInt16LE(data, offset + 2)), portA, portB);
     }
   }
 
@@ -57,12 +94,11 @@ class HubAttachedIOBaseMessage extends Message {
 /// {@category messages}
 class HubAttachedIOMessage extends HubAttachedIOBaseMessage {
   final IOType ioType;
-  final int hardwareRevision;
-  final int softwareRevision;
+  final PeripheralVersion hardwareRevision;
+  final PeripheralVersion softwareRevision;
 
   HubAttachedIOMessage(int portId, this.ioType, this.hardwareRevision, this.softwareRevision)
-      : super(portId, HubAttachedIOEvent.Attached,
-            payload: [ioType.value, ...Helper.encodeInt32LE(hardwareRevision), ...Helper.encodeInt32LE(softwareRevision)]);
+      : super(portId, HubAttachedIOEvent.Attached, payload: [ioType.value, ...hardwareRevision.encode(), ...softwareRevision.encode()]);
 
   String toString() {
     return "HubAttachedIOMessage Message: port=$portId, event=$event, type=$ioType, hwRev=$hardwareRevision, swRev=$softwareRevision";

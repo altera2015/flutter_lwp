@@ -1,0 +1,1 @@
+{"type":"IOType.HubStatusLight","hardwareRevision":268435456,"softwareRevision":268435456,"portId":50,"capabilities":["PortCapabilities.Output"],"inputModes":{},"outputModes":{"0":{"name":"COL O","symbol":"","rawRange":{"min":0.0,"max":10.0}},"1":{"name":"RGB O","symbol":"","rawRange":{"min":0.0,"max":255.0}}}}
