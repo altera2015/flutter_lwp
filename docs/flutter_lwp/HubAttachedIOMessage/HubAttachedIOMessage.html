@@ -52,8 +52,8 @@
     <section class="multi-line-signature">
       <span class="name ">HubAttachedIOMessage</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="-param-portId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">portId</span>, </span></li>
 <li><span class="parameter" id="-param-ioType"><span class="type-annotation"><a href="../../flutter_lwp/IOType-class.html">IOType</a></span> <span class="parameter-name">ioType</span>, </span></li>
-<li><span class="parameter" id="-param-hardwareRevision"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">hardwareRevision</span>, </span></li>
-<li><span class="parameter" id="-param-softwareRevision"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">softwareRevision</span></span></li>
+<li><span class="parameter" id="-param-hardwareRevision"><span class="type-annotation"><a href="../../flutter_lwp/PeripheralVersion-class.html">PeripheralVersion</a></span> <span class="parameter-name">hardwareRevision</span>, </span></li>
+<li><span class="parameter" id="-param-softwareRevision"><span class="type-annotation"><a href="../../flutter_lwp/PeripheralVersion-class.html">PeripheralVersion</a></span> <span class="parameter-name">softwareRevision</span></span></li>
 </ol>)
     </section>
 
@@ -64,8 +64,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">HubAttachedIOMessage(int portId, this.ioType, this.hardwareRevision, this.softwareRevision)
-    : super(portId, HubAttachedIOEvent.Attached,
-          payload: [ioType.value, ...Helper.encodeInt32LE(hardwareRevision), ...Helper.encodeInt32LE(softwareRevision)]);</code></pre>
+    : super(portId, HubAttachedIOEvent.Attached, payload: [ioType.value, ...hardwareRevision.encode(), ...softwareRevision.encode()]);</code></pre>
 </section>
 
 

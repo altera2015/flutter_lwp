@@ -74,6 +74,15 @@ of the backend it might not be wise to select a low delta.</p>
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">Future&lt;bool&gt; setInputMode(int mode, int delta, bool notificationEnabled) async {
+  if (!_inputModes.containsKey(mode)) {
+    await interrogate(onlyMode: mode, inputMode: true);
+  }
+
+  if (!_inputModes.containsKey(mode)) {
+    print(&quot;Unsupported mode selected&quot;);
+    return false;
+  }
+
   SimpleTransaction&lt;PortInputFormatMessage&gt; tx =
       SimpleTransaction&lt;PortInputFormatMessage&gt;(msgToSend: PortInputFormatSetupMessage(portId, mode, delta, notificationEnabled));
   PortInputFormatMessage? msg = await tx.queue(hub);
@@ -81,7 +90,12 @@ of the backend it might not be wise to select a low delta.</p>
     return false;
   }
   print(&quot;setInputMode got $msg&quot;);
-  return (msg.delta == delta) &amp;&amp; (msg.mode == mode) &amp;&amp; (msg.notificationEnabled == notificationEnabled);
+  bool v = (msg.delta == delta) &amp;&amp; (msg.mode == mode) &amp;&amp; (msg.notificationEnabled == notificationEnabled);
+
+  _inputModes.forEach((key, value) {
+    value.active = key == mode ? v : false;
+  });
+  return v;
 }</code></pre>
 </section>
 
@@ -122,6 +136,8 @@ of the backend it might not be wise to select a low delta.</p>
 
     <li class="section-title"><a href="../../flutter_lwp/Peripheral-class.html#instance-methods">Methods</a></li>
     <li><a href="../../flutter_lwp/Peripheral/dispose.html">dispose</a></li>
+    <li><a href="../../flutter_lwp/Peripheral/getModeFor.html">getModeFor</a></li>
+    <li><a href="../../flutter_lwp/Peripheral/inputModeActive.html">inputModeActive</a></li>
     <li><a href="../../flutter_lwp/Peripheral/interrogate.html">interrogate</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
     <li><a href="../../flutter_lwp/Peripheral/setInputMode.html">setInputMode</a></li>

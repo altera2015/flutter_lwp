@@ -1,14 +1,9 @@
 {
   "type": "IOType.LargeMotor",
-  "hardwareRevision": 1048576,
-  "softwareRevision": 1048576,
-  "portId": 0,
-  "capabilities": [
-    "PortCapabilities.Output",
-    "PortCapabilities.Input",
-    "PortCapabilities.LogicalCombinable",
-    "PortCapabilities.LogicalSynchronizable"
-  ],
+  "hardwareRevision": "0.0.10 (0)",
+  "softwareRevision": "0.0.10 (0)",
+  "portId": 1,
+  "capabilities": ["PortCapabilities.Output", "PortCapabilities.Input", "PortCapabilities.LogicalCombinable", "PortCapabilities.LogicalSynchronizable"],
   "inputModes": {
     "1": {
       "name": "SPEED",
@@ -16,6 +11,16 @@
       "rawRange": {
         "min": -100.0,
         "max": 100.0
+      },
+      "siRange": {
+        "min": -100.0,
+        "max": 100.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.EightBit",
+        "totalFigures": 4,
+        "decimals": 0
       }
     },
     "2": {
@@ -24,6 +29,16 @@
       "rawRange": {
         "min": -360.0,
         "max": 360.0
+      },
+      "siRange": {
+        "min": -360.0,
+        "max": 360.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.ThirtyTwoBit",
+        "totalFigures": 4,
+        "decimals": 0
       }
     },
     "3": {
@@ -32,6 +47,16 @@
       "rawRange": {
         "min": -360.0,
         "max": 360.0
+      },
+      "siRange": {
+        "min": -360.0,
+        "max": 360.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.SixteenBit",
+        "totalFigures": 3,
+        "decimals": 0
       }
     },
     "4": {
@@ -40,6 +65,16 @@
       "rawRange": {
         "min": 0.0,
         "max": 127.0
+      },
+      "siRange": {
+        "min": 0.0,
+        "max": 127.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.EightBit",
+        "totalFigures": 1,
+        "decimals": 0
       }
     }
   },
@@ -50,6 +85,16 @@
       "rawRange": {
         "min": -100.0,
         "max": 100.0
+      },
+      "siRange": {
+        "min": -100.0,
+        "max": 100.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.EightBit",
+        "totalFigures": 1,
+        "decimals": 0
       }
     },
     "1": {
@@ -58,6 +103,16 @@
       "rawRange": {
         "min": -100.0,
         "max": 100.0
+      },
+      "siRange": {
+        "min": -100.0,
+        "max": 100.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.EightBit",
+        "totalFigures": 4,
+        "decimals": 0
       }
     },
     "2": {
@@ -66,6 +121,16 @@
       "rawRange": {
         "min": -360.0,
         "max": 360.0
+      },
+      "siRange": {
+        "min": -360.0,
+        "max": 360.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.ThirtyTwoBit",
+        "totalFigures": 4,
+        "decimals": 0
       }
     },
     "3": {
@@ -74,6 +139,16 @@
       "rawRange": {
         "min": -360.0,
         "max": 360.0
+      },
+      "siRange": {
+        "min": -360.0,
+        "max": 360.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.SixteenBit",
+        "totalFigures": 3,
+        "decimals": 0
       }
     },
     "4": {
@@ -82,6 +157,16 @@
       "rawRange": {
         "min": 0.0,
         "max": 127.0
+      },
+      "siRange": {
+        "min": 0.0,
+        "max": 127.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.EightBit",
+        "totalFigures": 1,
+        "decimals": 0
       }
     }
   }

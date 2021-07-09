@@ -67,22 +67,7 @@
   }
 
   int portId = data[offset];
-  int value = 0;
-  offset = offset + 1;
-  switch (data.length - offset) {
-    case 1:
-      value = data[offset];
-      break;
-    case 2:
-      value = Helper.decodeInt16LE(data, offset);
-      break;
-    case 4:
-      value = Helper.decodeInt32LE(data, offset);
-      break;
-    default:
-      throw Exception(&quot;PortValueMessage: Unexpected data length&quot;);
-  }
-  return PortValueMessage(portId, value);
+  return PortValueMessage(portId, data.sublist(offset + 1));
 }</code></pre>
 </section>
 

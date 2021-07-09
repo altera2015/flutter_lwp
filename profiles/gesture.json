@@ -1,1 +1,28 @@
-{"type":"IOType.HubIMUGesture","hardwareRevision":1,"softwareRevision":1,"portId":100,"capabilities":["PortCapabilities.Input"],"inputModes":{"0":{"name":"GEST","symbol":"","rawRange":{"min":0.0,"max":4.0}}},"outputModes":{}}
+{
+  "type": "IOType.HubIMUGesture",
+  "hardwareRevision": "0.1.0 (0)",
+  "softwareRevision": "0.1.0 (0)",
+  "portId": 100,
+  "capabilities": ["PortCapabilities.Input"],
+  "inputModes": {
+    "0": {
+      "name": "GEST",
+      "symbol": "",
+      "rawRange": {
+        "min": 0.0,
+        "max": 4.0
+      },
+      "siRange": {
+        "min": 0.0,
+        "max": 4.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.EightBit",
+        "totalFigures": 1,
+        "decimals": 0
+      }
+    }
+  },
+  "outputModes": {}
+}

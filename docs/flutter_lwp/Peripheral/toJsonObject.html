@@ -73,8 +73,8 @@ cache.</p>
   Map&lt;String, Object&gt; map = {};
   if (_modeInfo != null) {
     map[&quot;type&quot;] = attachedIO.ioType.toString();
-    map[&quot;hardwareRevision&quot;] = attachedIO.hardwareRevision;
-    map[&quot;softwareRevision&quot;] = attachedIO.softwareRevision;
+    map[&quot;hardwareRevision&quot;] = attachedIO.hardwareRevision.toString();
+    map[&quot;softwareRevision&quot;] = attachedIO.softwareRevision.toString();
     map[&quot;portId&quot;] = _modeInfo!.portId;
     map[&quot;capabilities&quot;] = _modeInfo!.capabilities.map((e) =&gt; e.toString()).toList();
     Map&lt;String, Object&gt; inputModeMap = {};
@@ -129,6 +129,8 @@ cache.</p>
 
     <li class="section-title"><a href="../../flutter_lwp/Peripheral-class.html#instance-methods">Methods</a></li>
     <li><a href="../../flutter_lwp/Peripheral/dispose.html">dispose</a></li>
+    <li><a href="../../flutter_lwp/Peripheral/getModeFor.html">getModeFor</a></li>
+    <li><a href="../../flutter_lwp/Peripheral/inputModeActive.html">inputModeActive</a></li>
     <li><a href="../../flutter_lwp/Peripheral/interrogate.html">interrogate</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
     <li><a href="../../flutter_lwp/Peripheral/setInputMode.html">setInputMode</a></li>

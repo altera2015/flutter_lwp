@@ -53,7 +53,9 @@
       
 
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
-<span class="name ">interrogate</span>(<wbr>)
+<span class="name ">interrogate</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="interrogate-param-onlyMode">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">onlyMode</span> = <span class="default-value">-1</span>, </span></li>
+<li><span class="parameter" id="interrogate-param-inputMode"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">inputMode</span> = <span class="default-value">false</span>}</span></li>
+</ol>)
 
       
 
@@ -62,13 +64,14 @@
 <section class="desc markdown">
   <p>Interrogate the port for all its characteristics.
 including input and output modes.</p>
+<p>if onlyMode and inputMode are specified only that mode is loaded.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;void&gt; interrogate() async {
+  <pre class="language-dart"><code class="language-dart">Future&lt;void&gt; interrogate({int onlyMode = -1, bool inputMode = false}) async {
   print(&quot;Sending info request, wait...&quot;);
 
   _modeInfo = await hub.queue(
@@ -79,23 +82,39 @@ including input and output modes.</p>
     return;
   }
 
-  for (int mode in _modeInfo!.inputModeList) {
-    print(&quot;Sending get name for mode $mode on port ${_modeInfo!.portId}&quot;);
-    PeripheralMode? m = await _queryMode(_modeInfo!.portId, mode, true);
-    if (m != null) {
-      _inputModes[mode] = m;
-    } else {
-      print(&quot;Failed to fully query input mode $mode on port ${_modeInfo!.portId}&quot;);
+  if (onlyMode == -1) {
+    for (int mode in _modeInfo!.inputModeList) {
+      PeripheralMode? m = await _queryMode(_modeInfo!.portId, mode, true);
+      if (m != null) {
+        _inputModes[mode] = m;
+      } else {
+        print(&quot;Failed to fully query input mode $mode on port ${_modeInfo!.portId}&quot;);
+      }
     }
-  }
 
-  for (int mode in _modeInfo!.outputModeList) {
-    print(&quot;Sending get name for mode $mode on port ${_modeInfo!.portId}&quot;);
-    PeripheralMode? m = await _queryMode(_modeInfo!.portId, mode, false);
-    if (m != null) {
-      _outputModes[mode] = m;
+    for (int mode in _modeInfo!.outputModeList) {
+      PeripheralMode? m = await _queryMode(_modeInfo!.portId, mode, false);
+      if (m != null) {
+        _outputModes[mode] = m;
+      } else {
+        print(&quot;Failed to fully query output mode $mode on port ${_modeInfo!.portId}&quot;);
+      }
+    }
+  } else {
+    if (inputMode) {
+      PeripheralMode? m = await _queryMode(_modeInfo!.portId, onlyMode, true);
+      if (m != null) {
+        _inputModes[onlyMode] = m;
+      } else {
+        print(&quot;Failed to fully query input mode $onlyMode on port ${_modeInfo!.portId}&quot;);
+      }
     } else {
-      print(&quot;Failed to fully query output mode $mode on port ${_modeInfo!.portId}&quot;);
+      PeripheralMode? m = await _queryMode(_modeInfo!.portId, onlyMode, false);
+      if (m != null) {
+        _outputModes[onlyMode] = m;
+      } else {
+        print(&quot;Failed to fully query input mode $onlyMode on port ${_modeInfo!.portId}&quot;);
+      }
     }
   }
 }</code></pre>
@@ -138,6 +157,8 @@ including input and output modes.</p>
 
     <li class="section-title"><a href="../../flutter_lwp/Peripheral-class.html#instance-methods">Methods</a></li>
     <li><a href="../../flutter_lwp/Peripheral/dispose.html">dispose</a></li>
+    <li><a href="../../flutter_lwp/Peripheral/getModeFor.html">getModeFor</a></li>
+    <li><a href="../../flutter_lwp/Peripheral/inputModeActive.html">inputModeActive</a></li>
     <li><a href="../../flutter_lwp/Peripheral/interrogate.html">interrogate</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
     <li><a href="../../flutter_lwp/Peripheral/setInputMode.html">setInputMode</a></li>

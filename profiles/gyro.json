@@ -1,1 +1,28 @@
-{"type":"IOType.HubIMUGyro","hardwareRevision":1,"softwareRevision":1,"portId":98,"capabilities":["PortCapabilities.Input"],"inputModes":{"0":{"name":"ROT","symbol":"DPS","rawRange":{"min":-28571.419921875,"max":28571.419921875}}},"outputModes":{}}
+{
+  "type": "IOType.HubIMUGyro",
+  "hardwareRevision": "0.1.0 (0)",
+  "softwareRevision": "0.1.0 (0)",
+  "portId": 98,
+  "capabilities": ["PortCapabilities.Input"],
+  "inputModes": {
+    "0": {
+      "name": "ROT",
+      "symbol": "DPS",
+      "rawRange": {
+        "min": -28571.419921875,
+        "max": 28571.419921875
+      },
+      "siRange": {
+        "min": -2000.0,
+        "max": 2000.0
+      },
+      "valueFormat": {
+        "datasetCount": 3,
+        "dataType": "ValueFormatDataType.SixteenBit",
+        "totalFigures": 3,
+        "decimals": 0
+      }
+    }
+  },
+  "outputModes": {}
+}

@@ -1,1 +1,46 @@
-{"type":"IOType.HubIMUAccel","hardwareRevision":1,"softwareRevision":1,"portId":97,"capabilities":["PortCapabilities.Input"],"inputModes":{"0":{"name":"GRV","symbol":"mG","rawRange":{"min":-32768.0,"max":32768.0}},"1":{"name":"CAL","symbol":"","rawRange":{"min":1.0,"max":1.0}}},"outputModes":{}}
+{
+  "type": "IOType.HubIMUAccel",
+  "hardwareRevision": "0.1.0 (0)",
+  "softwareRevision": "0.1.0 (0)",
+  "portId": 97,
+  "capabilities": ["PortCapabilities.Input"],
+  "inputModes": {
+    "0": {
+      "name": "GRV",
+      "symbol": "mG",
+      "rawRange": {
+        "min": -8000.0,
+        "max": 8000.0
+      },
+      "siRange": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "valueFormat": {
+        "datasetCount": 3,
+        "dataType": "ValueFormatDataType.SixteenBit",
+        "totalFigures": 3,
+        "decimals": 0
+      }
+    },
+    "1": {
+      "name": "CAL",
+      "symbol": "",
+      "rawRange": {
+        "min": 1.0,
+        "max": 1.0
+      },
+      "siRange": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.EightBit",
+        "totalFigures": 0,
+        "decimals": 0
+      }
+    }
+  },
+  "outputModes": {}
+}

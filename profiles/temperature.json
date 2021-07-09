@@ -1,1 +1,28 @@
-{"type":"IOType.HubIMUTemperature","hardwareRevision":268435456,"softwareRevision":268435456,"portId":61,"capabilities":["PortCapabilities.Input"],"inputModes":{"0":{"name":"TEMP","symbol":"DEG","rawRange":{"min":-900.0,"max":900.0}}},"outputModes":{}}
+{
+  "type": "IOType.HubIMUTemperature",
+  "hardwareRevision": "0.0.0 (16)",
+  "softwareRevision": "0.0.0 (16)",
+  "portId": 61,
+  "capabilities": ["PortCapabilities.Input"],
+  "inputModes": {
+    "0": {
+      "name": "TEMP",
+      "symbol": "DEG",
+      "rawRange": {
+        "min": -90.0,
+        "max": 90.0
+      },
+      "siRange": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.SixteenBit",
+        "totalFigures": 5,
+        "decimals": 1
+      }
+    }
+  },
+  "outputModes": {}
+}

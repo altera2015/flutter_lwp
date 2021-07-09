@@ -1,1 +1,46 @@
-{"type":"IOType.Current","hardwareRevision":268435456,"softwareRevision":268435456,"portId":59,"capabilities":["PortCapabilities.Input"],"inputModes":{"0":{"name":"CUR L","symbol":"mA","rawRange":{"min":0.0,"max":4095.0}},"1":{"name":"CUR S","symbol":"mA","rawRange":{"min":0.0,"max":4095.0}}},"outputModes":{}}
+{
+  "type": "IOType.Current",
+  "hardwareRevision": "0.0.0 (16)",
+  "softwareRevision": "0.0.0 (16)",
+  "portId": 59,
+  "capabilities": ["PortCapabilities.Input"],
+  "inputModes": {
+    "0": {
+      "name": "CUR L",
+      "symbol": "mA",
+      "rawRange": {
+        "min": 0.0,
+        "max": 4175.0
+      },
+      "siRange": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.SixteenBit",
+        "totalFigures": 4,
+        "decimals": 0
+      }
+    },
+    "1": {
+      "name": "CUR S",
+      "symbol": "mA",
+      "rawRange": {
+        "min": 0.0,
+        "max": 4175.0
+      },
+      "siRange": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "valueFormat": {
+        "datasetCount": 1,
+        "dataType": "ValueFormatDataType.SixteenBit",
+        "totalFigures": 4,
+        "decimals": 0
+      }
+    }
+  },
+  "outputModes": {}
+}

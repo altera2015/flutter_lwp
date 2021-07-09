@@ -66,6 +66,7 @@
     throw Exception(&quot;Not enough data&quot;);
   }
 
+  &#47;&#47;print(Helper.toHex(data));
   int portId = data[offset];
   HubAttachedIOEvent event = HubAttachedIOEventValue.fromInt(data[offset + 1]);
 
@@ -74,8 +75,8 @@
       if (data.length - offset &lt; 12) {
         throw Exception(&quot;Not enough data (Attached)&quot;);
       }
-      int hardwareRevision = Helper.decodeInt32LE(data, offset + 4);
-      int softwareRevision = Helper.decodeInt32LE(data, offset + 8);
+      PeripheralVersion hardwareRevision = PeripheralVersion.decode(data, offset + 4);
+      PeripheralVersion softwareRevision = PeripheralVersion.decode(data, offset + 8);
       return HubAttachedIOMessage(portId, IOTypeValue.fromInt(Helper.decodeInt16LE(data, offset + 2)), hardwareRevision, softwareRevision);
 
     case HubAttachedIOEvent.Detached:
@@ -87,7 +88,7 @@
       }
       int portA = data[offset + 4];
       int portB = data[offset + 5];
-      return HubAttachedIOMessage(portId, IOTypeValue.fromInt(Helper.decodeInt16LE(data, offset + 2)), portA, portB);
+      return HubAttachedVirtualIOMessage(portId, IOTypeValue.fromInt(Helper.decodeInt16LE(data, offset + 2)), portA, portB);
   }
 }</code></pre>
 </section>

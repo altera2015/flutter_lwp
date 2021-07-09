@@ -48,7 +48,13 @@ class BuggyView extends StatefulWidget {
     StreamSubscription<Message> sub = hub.transport.stream.where((event) => event is PortValueMessage).listen((Message message) {
       PortValueMessage pv = message as PortValueMessage;
       if (pv.portId == portId) {
-        lastReportedValue = pv.value;
+        if (pv.value.length == 2) {
+          lastReportedValue = Helper.decodeInt16LE(pv.value, 0);
+        } else if (pv.value.length == 4) {
+          lastReportedValue = Helper.decodeInt32LE(pv.value, 0);
+        } else {
+          throw Exception("Unexpected length");
+        }
       }
     });
 

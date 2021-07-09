@@ -39,7 +39,7 @@ part 'lwp_transaction.dart';
 /// @nodoc
 /// Internal class useful for decoding the LWP data.
 class Helper {
-  static bool debug = true;
+  static bool debug = false;
 
   static List<int> encodeInt16LE(int d) {
     List<int> res = [];

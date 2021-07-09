@@ -73,7 +73,7 @@
     throw Exception(&quot;Not connected&quot;);
   }
   List&lt;int&gt; data = msg.encode();
-  Helper.dprint(&quot;Sending: ${Helper.toHex(data)}&quot;);
+  print(&quot;Sending: ${Helper.toHex(data)}&quot;);
   await _characteristic!.write(data);
   return true;
 }</code></pre>

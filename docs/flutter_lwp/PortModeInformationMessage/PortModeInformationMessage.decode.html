@@ -72,17 +72,19 @@
 
   switch (informationType) {
     case PortModeInformationType.NAME:
-      return PortModeInformationMessageNAME(portId, mode, informationType, Helper.decodeStr(data, offset + 3));
+      return PortModeInformationMessageNAME(portId, mode, Helper.decodeStr(data, offset + 3));
     case PortModeInformationType.SYMBOL:
-      return PortModeInformationMessageSYMBOL(portId, mode, informationType, Helper.decodeStr(data, offset + 3));
+      return PortModeInformationMessageSYMBOL(portId, mode, Helper.decodeStr(data, offset + 3));
     case PortModeInformationType.RAW:
-      return PortModeInformationMessageRAW(portId, mode, informationType, Helper.decodeFloat32(data, offset + 3), Helper.decodeFloat32(data, offset + 7));
+      return PortModeInformationMessageRAW(portId, mode, Helper.decodeFloat32(data, offset + 3), Helper.decodeFloat32(data, offset + 7));
     case PortModeInformationType.PCT:
-      return PortModeInformationMessagePCT(portId, mode, informationType, Helper.decodeFloat32(data, offset + 3), Helper.decodeFloat32(data, offset + 7));
+      return PortModeInformationMessagePCT(portId, mode, Helper.decodeFloat32(data, offset + 3), Helper.decodeFloat32(data, offset + 7));
     case PortModeInformationType.SI:
-      return PortModeInformationMessageSI(portId, mode, informationType, Helper.decodeFloat32(data, offset + 3), Helper.decodeFloat32(data, offset + 7));
+      return PortModeInformationMessageSI(portId, mode, Helper.decodeFloat32(data, offset + 3), Helper.decodeFloat32(data, offset + 7));
     case PortModeInformationType.MOTOR_BIAS:
-      return PortModeInformationMessageMotorBias(portId, mode, informationType, data[offset + 3]);
+      return PortModeInformationMessageMotorBias(portId, mode, data[offset + 3]);
+    case PortModeInformationType.VALUE_FORMAT:
+      return PortModeInformationMessageValueFormat(portId, mode, ValueFormat.decode(data, offset + 3));
     default:
       throw Exception(&quot;Unsupported information type $informationType&quot;);
   }
