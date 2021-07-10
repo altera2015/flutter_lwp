@@ -18,22 +18,47 @@ class PeripheralModeRange {
 /// Mode container
 /// {@category API}
 class PeripheralMode {
+  /// id of the mode
   final int modeId;
+
+  /// true if this is an input put.
   final bool inputMode;
 
+  /// true if this mode has been set active using [Peripheral.setInputMode]
   bool active = false;
+
+  /// name of the mode.
   String name = "";
+
+  /// SI symbol of the mode.
   String symbol = "";
+
+  /// Value format of the mode.
   ValueFormat valueFormat = ValueFormat(0, ValueFormatDataType.EightBit, 0, 0);
 
+  /// Raw range of the values.
   PeripheralModeRange rawRange = PeripheralModeRange();
+
+  /// SI Range of the values.
   PeripheralModeRange siRange = PeripheralModeRange();
+
+  /// return string value of the mode.
   String toString() {
-    return "$modeId, $name $symbol rawRange=(${rawRange.min}-${rawRange.max}, valueFormat=$valueFormat)";
+    return "$modeId, $name $symbol rawRange=(${rawRange.min}-${rawRange.max}), valueFormat=$valueFormat)";
   }
 
   PeripheralMode(this.modeId, this.inputMode);
 
+  /// returns a Object suitable for encoding as
+  /// JSON with the details of the mode.
+  ///
+  /// ```dart
+  /// // p is a Peripheral.
+  /// PeripheralMode ? pm = p.activeMode;
+  /// if ( pm == null ) {
+  ///   return;
+  /// }
+  /// log(jsonEncode(pm.toJsonObject()));
   Map<String, Object> toJsonObject() {
     return {
       "name": name,
@@ -44,7 +69,9 @@ class PeripheralMode {
     };
   }
 
-  double _toSI(Object raw) {
+  /// translate a raw value to an SI value
+  /// as determined by the mode's valueFormat.
+  double toSI(Object raw) {
     double v = 0;
     if (raw is int) {
       v = raw.toDouble();
@@ -63,32 +90,61 @@ class PeripheralMode {
     return v;
   }
 
-  /// decode a data stream according to the Format
-  List<double> decode(List<int> data, int offset) {
+  /// Decode a list of raw values to SI units
+  /// as determined by the mode's valueFormat.
+  List<double> listToSI(List<Object> raw) {
     List<double> values = [];
+    raw.forEach((raw) {
+      values.add(toSI(raw));
+    });
+    return values;
+  }
+
+  /// decode a data stream according to the Format
+  List<double> decodeSI(List<int> data, int offset) {
+    List<Object> rawValues = decodeRaw(data, offset);
+    return listToSI(rawValues);
+  }
+
+  /// decodes a ValueMessage raw binary message data into
+  /// raw data.
+  List<Object> decodeRaw(List<int> data, int offset) {
+    List<Object> values = [];
     for (int i = 0; i < valueFormat.datasetCount; i++) {
       switch (valueFormat.dataType) {
         case ValueFormatDataType.EightBit:
-          values.add(_toSI(data[offset]));
+          values.add(data[offset]);
           offset += 1;
           break;
         case ValueFormatDataType.SixteenBit:
-          values.add(_toSI(Helper.decodeInt16LE(data, offset)));
+          values.add(Helper.decodeInt16LE(data, offset));
           offset += 2;
           break;
         case ValueFormatDataType.ThirtyTwoBit:
-          values.add(_toSI(Helper.decodeInt32LE(data, offset)));
+          values.add(Helper.decodeInt32LE(data, offset));
           offset += 4;
           break;
         case ValueFormatDataType.Float:
-          values.add(_toSI(Helper.decodeFloat32(data, offset)));
+          values.add(Helper.decodeFloat32(data, offset));
           offset += 4;
           break;
       }
     }
-
     return values;
   }
+}
+
+/// Class that is used by [Peripheral] to send
+/// notification when a values is updated.
+///
+/// @{category API}
+class PeripheralValueNotification {
+  final Peripheral peripheral;
+  final PeripheralMode mode;
+  final List<Object> rawValues;
+  final List<double> siValues;
+
+  PeripheralValueNotification(this.peripheral, this.mode, this.rawValues, this.siValues);
 }
 
 /// Master Peripheral class.
@@ -98,9 +154,32 @@ class PeripheralMode {
 ///
 /// {@category API}
 class Peripheral {
+  final StreamController<PeripheralValueNotification> _controller = StreamController.broadcast();
+
+  /// The hub that this Peripheral is attached to.
   final Hub hub;
+
+  /// Port information
   final HubAttachedIOMessage attachedIO;
 
+  /// If a inputMode was set and an input value
+  /// was reported by the peripheral it will be
+  /// stored in this variable as the raw value.
+  List<Object> rawValues = [];
+
+  /// If a inputMode was set and an input value
+  /// was reported by the peripheral it will be
+  /// stored in this variable as the SI value.
+  ///
+  /// ```dart
+  /// await p.setInputMode(0,5,true);
+  /// await Future.delayed(Duration(seconds:5));
+  /// print(p.siValues); // should print some information if
+  ///                    // the peripheral sent some.
+  /// ```
+  List<double> siValues = [];
+
+  StreamSubscription<Message>? _subscription;
   PortInformationModesMessage? _modeInfo;
   Map<int, PeripheralMode> _inputModes = {};
   Map<int, PeripheralMode> _outputModes = {};
@@ -142,7 +221,23 @@ class Peripheral {
     this.attachedIO,
   ) {
     print("Peripheral added $attachedIO");
+
+    _subscription = this.hub.transport.stream.where((Message message) => message is PortValueMessage).listen((message) {
+      PortValueMessage pvm = message as PortValueMessage;
+      if (pvm.portId == this.portId) {
+        PeripheralMode? am = this.activeMode;
+        if (am != null) {
+          rawValues = am.decodeRaw(pvm.value, 0);
+          siValues = am.listToSI(rawValues);
+          _controller.add(PeripheralValueNotification(this, am, rawValues, siValues));
+        }
+      }
+    });
   }
+
+  /// Stream that sends notifications when a new values
+  /// arrives for the active input mode.
+  Stream<PeripheralValueNotification> get stream => _controller.stream;
 
   /// Returns the portId this peripheral is attached to.
   ///
@@ -272,7 +367,11 @@ class Peripheral {
   }
 
   /// call this to dispose of the peripheral when no longer needed.
-  void dispose() {}
+  void dispose() {
+    _subscription?.cancel();
+    _subscription = null;
+    _controller.close();
+  }
 
   /// Provide a JSON suitable object for long term storage of the
   /// peripheral characteristics. Can be used to shorted startup time as a
@@ -329,6 +428,7 @@ class Peripheral {
     return v;
   }
 
+  /// Returns true if [mode] has been set as active.
   bool inputModeActive(int mode) {
     if (_inputModes.containsKey(mode)) {
       return _inputModes[mode]!.active;
@@ -337,6 +437,40 @@ class Peripheral {
     }
   }
 
+  /// Returns the currently selected peripheral mode.
+  /// This can be set by calling [setInputMode]
+  ///
+  /// ```
+  /// await p.setInputMode(0,5,true);
+  /// PeripheralMode ? pm = p.activeMode;
+  /// if ( pm != null ) {
+  ///   print(pm);
+  /// } else {
+  ///   print("No active mode, please call setInputMode first.";
+  /// }
+  /// ```
+  PeripheralMode? get activeMode {
+    List<int> keys = _inputModes.keys.toList();
+    for (int i = 0; i < keys.length; i++) {
+      PeripheralMode m = _inputModes[keys[i]]!;
+      if (m.active) {
+        return m;
+      }
+    }
+    return null;
+  }
+
+  /// Returns the [PeripheralMode] information for mode
+  /// named [name].
+  ///
+  /// ```dart
+  /// try {
+  ///   PeripheralMode pm = await p.getModeFor("POS");
+  ///   print(pm);
+  /// } catch ( e ) {
+  ///   print("unable to find mode.");
+  /// }
+  /// ```
   Future<PeripheralMode> getModeFor(String name) async {
     if (_modeInfo == null) {
       await interrogate();
@@ -352,11 +486,12 @@ class Peripheral {
         pMode = info;
       }
     });
-    if (pMode != null) {
-      return pMode!;
-    } else {
-      throw "Unable to find mode $name";
+
+    if (pMode == null) {
+      throw ("Unable to find mode $name");
     }
+
+    return pMode!;
   }
 }
 
@@ -406,7 +541,7 @@ mixin VoltageInput on Peripheral {
     if (msg == null) {
       return 0.0;
     }
-    return mode.decode(msg.value, 0)[0];
+    return mode.decodeSI(msg.value, 0)[0];
   }
 }
 
@@ -428,7 +563,7 @@ mixin CurrentInput on Peripheral {
     if (msg == null) {
       return 0.0;
     }
-    return mode.decode(msg.value, 0)[0];
+    return mode.decodeSI(msg.value, 0)[0];
   }
 }
 
@@ -453,7 +588,7 @@ mixin TemperatureInput on Peripheral {
       return 0.0;
     }
 
-    return mode.decode(msg.value, 0)[0];
+    return mode.decodeSI(msg.value, 0)[0];
   }
 }
 
@@ -477,7 +612,7 @@ mixin AccelerationInput on Peripheral {
       return [];
     }
 
-    return mode.decode(msg.value, 0);
+    return mode.decodeSI(msg.value, 0);
   }
 }
 
@@ -501,7 +636,7 @@ mixin GyroInput on Peripheral {
       return [];
     }
 
-    return mode.decode(msg.value, 0);
+    return mode.decodeSI(msg.value, 0);
   }
 }
 
@@ -525,7 +660,7 @@ mixin OrientationInput on Peripheral {
       return [];
     }
 
-    return mode.decode(msg.value, 0);
+    return mode.decodeSI(msg.value, 0);
   }
 }
 
@@ -533,7 +668,7 @@ mixin OrientationInput on Peripheral {
 /// {@category API}
 mixin GestureInput on Peripheral {
   /// Gets the Orientation readout.
-  Future<double> getGesture() async {
+  Future<int> getGesture() async {
     PeripheralMode mode = await getModeFor("GEST");
 
     // make sure it's active!
@@ -549,7 +684,7 @@ mixin GestureInput on Peripheral {
       return -1;
     }
 
-    return mode.decode(msg.value, 0)[0];
+    return mode.decodeRaw(msg.value, 0)[0] as int;
   }
 }
 

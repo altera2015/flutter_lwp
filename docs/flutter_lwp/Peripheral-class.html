@@ -107,13 +107,25 @@ on the <a href="../flutter_lwp/IOType-class.html">IOType</a>.
       <h2>Properties</h2>
 
       <dl class="properties">
+        <dt id="activeMode" class="property">
+  <span class="name"><a href="../flutter_lwp/Peripheral/activeMode.html">activeMode</a></span>
+  <span class="signature">&#8594; <a href="../flutter_lwp/PeripheralMode-class.html">PeripheralMode</a>?</span> 
+
+</dt>
+<dd>
+  Returns the currently selected peripheral mode.
+This can be set by calling <a href="../flutter_lwp/Peripheral/setInputMode.html">setInputMode</a> <a href="../flutter_lwp/Peripheral/activeMode.html">[...]</a>
+  <div class="features">read-only</div>
+
+</dd>
+
         <dt id="attachedIO" class="property">
   <span class="name"><a href="../flutter_lwp/Peripheral/attachedIO.html">attachedIO</a></span>
   <span class="signature">&#8594; <a href="../flutter_lwp/HubAttachedIOMessage-class.html">HubAttachedIOMessage</a></span> 
 
 </dt>
 <dd>
-   
+  Port information 
   <div class="features">final</div>
 
 </dd>
@@ -135,7 +147,7 @@ on the <a href="../flutter_lwp/IOType-class.html">IOType</a>.
 
 </dt>
 <dd>
-   
+  The hub that this Peripheral is attached to. 
   <div class="features">final</div>
 
 </dd>
@@ -151,6 +163,19 @@ on the <a href="../flutter_lwp/IOType-class.html">IOType</a>.
 
 </dd>
 
+        <dt id="rawValues" class="property">
+  <span class="name"><a href="../flutter_lwp/Peripheral/rawValues.html">rawValues</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  If a inputMode was set and an input value
+was reported by the peripheral it will be
+stored in this variable as the raw value. 
+  <div class="features">read / write</div>
+
+</dd>
+
         <dt id="runtimeType" class="property inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Type-class.html">Type</a></span> 
@@ -159,6 +184,31 @@ on the <a href="../flutter_lwp/IOType-class.html">IOType</a>.
 <dd class="inherited">
   A representation of the runtime type of the object. 
   <div class="features">read-only, inherited</div>
+
+</dd>
+
+        <dt id="siValues" class="property">
+  <span class="name"><a href="../flutter_lwp/Peripheral/siValues.html">siValues</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  If a inputMode was set and an input value
+was reported by the peripheral it will be
+stored in this variable as the SI value. <a href="../flutter_lwp/Peripheral/siValues.html">[...]</a>
+  <div class="features">read / write</div>
+
+</dd>
+
+        <dt id="stream" class="property">
+  <span class="name"><a href="../flutter_lwp/Peripheral/stream.html">stream</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../flutter_lwp/PeripheralValueNotification-class.html">PeripheralValueNotification</a></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  Stream that sends notifications when a new values
+arrives for the active input mode. 
+  <div class="features">read-only</div>
 
 </dd>
 
@@ -189,7 +239,8 @@ on the <a href="../flutter_lwp/IOType-class.html">IOType</a>.
 
 </dt>
 <dd>
-   
+  Returns the <code>PeripheralMode</code> information for mode
+named <code>name</code>. <a href="../flutter_lwp/Peripheral/getModeFor.html">[...]</a>
   
 
 </dd>
@@ -202,7 +253,7 @@ on the <a href="../flutter_lwp/IOType-class.html">IOType</a>.
 
 </dt>
 <dd>
-   
+  Returns true if <code>mode</code> has been set as active. 
   
 
 </dd>
@@ -344,6 +395,7 @@ cache.
   <li><a href="../flutter_lwp/Peripheral-class.html">Peripheral</a></li>
   <li><a href="../flutter_lwp/PeripheralMode-class.html">PeripheralMode</a></li>
   <li><a href="../flutter_lwp/PeripheralModeRange-class.html">PeripheralModeRange</a></li>
+  <li><a href="../flutter_lwp/PeripheralValueNotification-class.html">PeripheralValueNotification</a></li>
   <li><a href="../flutter_lwp/PeripheralVersion-class.html">PeripheralVersion</a></li>
   <li><a href="../flutter_lwp/PortInformationMessage-class.html">PortInformationMessage</a></li>
   <li><a href="../flutter_lwp/PortInformationModeCombinationsMessage-class.html">PortInformationModeCombinationsMessage</a></li>
@@ -443,11 +495,15 @@ cache.
     <li class="section-title">
       <a href="../flutter_lwp/Peripheral-class.html#instance-properties">Properties</a>
     </li>
+    <li><a href="../flutter_lwp/Peripheral/activeMode.html">activeMode</a></li>
     <li><a href="../flutter_lwp/Peripheral/attachedIO.html">attachedIO</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
     <li><a href="../flutter_lwp/Peripheral/hub.html">hub</a></li>
     <li><a href="../flutter_lwp/Peripheral/portId.html">portId</a></li>
+    <li><a href="../flutter_lwp/Peripheral/rawValues.html">rawValues</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    <li><a href="../flutter_lwp/Peripheral/siValues.html">siValues</a></li>
+    <li><a href="../flutter_lwp/Peripheral/stream.html">stream</a></li>
 
     <li class="section-title"><a href="../flutter_lwp/Peripheral-class.html#instance-methods">Methods</a></li>
     <li><a href="../flutter_lwp/Peripheral/dispose.html">dispose</a></li>

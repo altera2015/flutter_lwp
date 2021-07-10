@@ -80,7 +80,7 @@
 
 </dt>
 <dd>
-   
+  true if this mode has been set active using <a href="../flutter_lwp/Peripheral/setInputMode.html">Peripheral.setInputMode</a> 
   <div class="features">read / write</div>
 
 </dd>
@@ -102,7 +102,7 @@
 
 </dt>
 <dd>
-   
+  true if this is an input put. 
   <div class="features">final</div>
 
 </dd>
@@ -113,7 +113,7 @@
 
 </dt>
 <dd>
-   
+  id of the mode 
   <div class="features">final</div>
 
 </dd>
@@ -124,7 +124,7 @@
 
 </dt>
 <dd>
-   
+  name of the mode. 
   <div class="features">read / write</div>
 
 </dd>
@@ -135,7 +135,7 @@
 
 </dt>
 <dd>
-   
+  Raw range of the values. 
   <div class="features">read / write</div>
 
 </dd>
@@ -157,7 +157,7 @@
 
 </dt>
 <dd>
-   
+  SI Range of the values. 
   <div class="features">read / write</div>
 
 </dd>
@@ -168,7 +168,7 @@
 
 </dt>
 <dd>
-   
+  SI symbol of the mode. 
   <div class="features">read / write</div>
 
 </dd>
@@ -179,7 +179,7 @@
 
 </dt>
 <dd>
-   
+  Value format of the mode. 
   <div class="features">read / write</div>
 
 </dd>
@@ -190,8 +190,22 @@
     <section class="summary offset-anchor" id="instance-methods">
       <h2>Methods</h2>
       <dl class="callables">
-        <dt id="decode" class="callable">
-  <span class="name"><a href="../flutter_lwp/PeripheralMode/decode.html">decode</a></span><span class="signature">(<wbr><span class="parameter" id="decode-param-data"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>&gt;</span></span> <span class="parameter-name">data</span>, </span><span class="parameter" id="decode-param-offset"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+        <dt id="decodeRaw" class="callable">
+  <span class="name"><a href="../flutter_lwp/PeripheralMode/decodeRaw.html">decodeRaw</a></span><span class="signature">(<wbr><span class="parameter" id="decodeRaw-param-data"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>&gt;</span></span> <span class="parameter-name">data</span>, </span><span class="parameter" id="decodeRaw-param-offset"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  decodes a ValueMessage raw binary message data into
+raw data. 
+  
+
+</dd>
+
+        <dt id="decodeSI" class="callable">
+  <span class="name"><a href="../flutter_lwp/PeripheralMode/decodeSI.html">decodeSI</a></span><span class="signature">(<wbr><span class="parameter" id="decodeSI-param-data"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>&gt;</span></span> <span class="parameter-name">data</span>, </span><span class="parameter" id="decodeSI-param-offset"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>&gt;</span></span>
   </span>
   
@@ -199,6 +213,20 @@
 </dt>
 <dd>
   decode a data stream according to the Format 
+  
+
+</dd>
+
+        <dt id="listToSI" class="callable">
+  <span class="name"><a href="../flutter_lwp/PeripheralMode/listToSI.html">listToSI</a></span><span class="signature">(<wbr><span class="parameter" id="listToSI-param-raw"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span>&gt;</span></span> <span class="parameter-name">raw</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Decode a list of raw values to SI units
+as determined by the mode's valueFormat. 
   
 
 </dd>
@@ -224,7 +252,22 @@
 
 </dt>
 <dd>
-   
+  returns a Object suitable for encoding as
+JSON with the details of the mode. <a href="../flutter_lwp/PeripheralMode/toJsonObject.html">[...]</a>
+  
+
+</dd>
+
+        <dt id="toSI" class="callable">
+  <span class="name"><a href="../flutter_lwp/PeripheralMode/toSI.html">toSI</a></span><span class="signature">(<wbr><span class="parameter" id="toSI-param-raw"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">raw</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  translate a raw value to an SI value
+as determined by the mode's valueFormat. 
   
 
 </dd>
@@ -237,7 +280,7 @@
 
 </dt>
 <dd>
-  A string representation of this object. <a href="../flutter_lwp/PeripheralMode/toString.html">[...]</a>
+  return string value of the mode. 
   <div class="features">override</div>
 
 </dd>
@@ -311,6 +354,7 @@
   <li><a href="../flutter_lwp/Peripheral-class.html">Peripheral</a></li>
   <li><a href="../flutter_lwp/PeripheralMode-class.html">PeripheralMode</a></li>
   <li><a href="../flutter_lwp/PeripheralModeRange-class.html">PeripheralModeRange</a></li>
+  <li><a href="../flutter_lwp/PeripheralValueNotification-class.html">PeripheralValueNotification</a></li>
   <li><a href="../flutter_lwp/PeripheralVersion-class.html">PeripheralVersion</a></li>
   <li><a href="../flutter_lwp/PortInformationMessage-class.html">PortInformationMessage</a></li>
   <li><a href="../flutter_lwp/PortInformationModeCombinationsMessage-class.html">PortInformationModeCombinationsMessage</a></li>
@@ -421,9 +465,12 @@
     <li><a href="../flutter_lwp/PeripheralMode/valueFormat.html">valueFormat</a></li>
 
     <li class="section-title"><a href="../flutter_lwp/PeripheralMode-class.html#instance-methods">Methods</a></li>
-    <li><a href="../flutter_lwp/PeripheralMode/decode.html">decode</a></li>
+    <li><a href="../flutter_lwp/PeripheralMode/decodeRaw.html">decodeRaw</a></li>
+    <li><a href="../flutter_lwp/PeripheralMode/decodeSI.html">decodeSI</a></li>
+    <li><a href="../flutter_lwp/PeripheralMode/listToSI.html">listToSI</a></li>
     <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
     <li><a href="../flutter_lwp/PeripheralMode/toJsonObject.html">toJsonObject</a></li>
+    <li><a href="../flutter_lwp/PeripheralMode/toSI.html">toSI</a></li>
     <li><a href="../flutter_lwp/PeripheralMode/toString.html">toString</a></li>
 
     <li class="section-title inherited"><a href="../flutter_lwp/PeripheralMode-class.html#operators">Operators</a></li>
